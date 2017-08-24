@@ -1,0 +1,716 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Speech Recognition on the Web - Mihai Cîrlănaru</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style>
+      .reveal pre {
+        font-size: .85em;
+        box-shadow: none;
+      }
+
+      .reveal pre code {
+        max-height: 80%;
+				font-size: .75em;
+				line-height: 1;
+      }
+
+      .reveal h1,
+      .reveal h2,
+      .reveal h3 {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+      }
+
+      .reveal .main {
+        width: 200%;
+        height: 500px;
+        position: absolute;
+        left: -50%;
+        top: -125px;
+        z-index: -1;
+      }
+
+      .main-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .conf-logo,
+      .conf-logo-secondary {
+        display: block;
+        width: 100%;
+        height: 10%;
+        background: url("img/fec-logo.svg") no-repeat 50%;
+        background-size: contain;
+        position: absolute;
+        top: 0;
+      }
+
+      .hudl-logo {
+        display: block;
+        width: 300px;
+        height: 150px;
+        background: url("img/hudl-logo.png") no-repeat 50%;
+        background-size: contain;
+        margin: 0 auto;
+        transform: translateX(-20px);
+      }
+
+      .mozilla-logo {
+        display: block;
+        width: 300px;
+        height: 150px;
+        background: url("img/mozilla-logo.jpg") no-repeat 50%;
+        background-size: contain;
+        margin: 0 auto;
+      }
+
+      .hero-pic {
+        display: block;
+        width: 75%;
+        height: 400%;
+        position: absolute;
+        left: 50%;
+      }
+
+      .github-repo {
+        background: url("img/github.png") no-repeat 50%;
+        background-size: contain;
+      }
+
+      .spec {
+        background: url("img/spec.png") no-repeat 50%;
+        background-size: contain;
+      }
+
+      .browser-support {
+        background: url("img/browser-support.png") no-repeat 50%;
+        background-size: contain;
+        /*transform: translateX(-50%);*/
+        left:12%;
+      }
+
+      .emphasize {
+        color: #ff6500 !important;
+      }
+
+      .reveal .name-text {
+        margin-top: 100px;
+        font-size: 1em;
+      }
+
+      .reveal .name-sub {
+        opacity: .7;
+        font-size: .75em;
+      }
+
+      .final {
+        color: white;
+        padding-right: 3px;
+      }
+      .interim {
+        color: gray;
+      }
+      #results {
+        font-size: .75em;
+        padding: 15px;
+        text-align: left;
+        min-height: 150px;
+        width: 75%;
+        margin: 10px auto;
+      }
+
+			.title_main {
+				margin-top: -2rem;
+				margin-left: 20rem;
+			}
+			.title-main__em {
+				font-size: 170%;
+			}
+
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<!-- SLIDE 1 -->
+<section data-background-image="img/full-ink.jpg" data-transition="slide">
+  <h2>Speech Recognition</h2>
+  <h3 class="title-main">on the <span class="emphasize title-main__em">Web</span></h3>
+  <div class="name">
+    <div class="name-text">Mihai Cîrlănaru</div>
+    <div class="name-sub">@MCirlanaru</div>
+  </div>
+  <div class="main">
+    <div class="main-container">
+      <i class="conf-logo"></i>
+    </div>
+  </div>
+
+  <aside class="notes">
+    Thanks for having me here, it’s amazing to be back home in front of such a big crowd of enthusiasts.
+
+    For the next half an hour I will be talking to you about a topic I am very passionate about, Speech Recognition. And most excitingly of all, about how to empower your web application with voice-triggered interactions.
+  </aside>
+</section>
+
+<!-- SLIDE 9 -->
+<section data-background-image="img/siri.jpg" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    In case you don't already use personal assistant apps like siri, Speech recognition:
+    Speaker independent: regardless of the speaker
+    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
+
+    “Voice User Interface” -- command based/limited vocabulary
+      Voice dialing
+      Call routing
+      Simple data entry
+    Dictation/Notes taking -- free form speech
+  </aside>
+</section>
+<!-- SLIDE 9 -->
+<section data-background-image="img/alexa-2.jpg" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    In case you don't already use personal assistant apps like siri, Speech recognition:
+    Speaker independent: regardless of the speaker
+    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
+
+    “Voice User Interface” -- command based/limited vocabulary
+      Voice dialing
+      Call routing
+      Simple data entry
+    Dictation/Notes taking -- free form speech
+  </aside>
+</section>
+<!-- SLIDE 9 -->
+<section data-background-image="img/google-home.webp" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    In case you don't already use personal assistant apps like siri, Speech recognition:
+    Speaker independent: regardless of the speaker
+    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
+
+    “Voice User Interface” -- command based/limited vocabulary
+      Voice dialing
+      Call routing
+      Simple data entry
+    Dictation/Notes taking -- free form speech
+  </aside>
+</section>
+
+<!-- SLIDE 9 -->
+<section data-background-image="img/google-home.webp" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    eMarket report
+  </aside>
+</section>
+
+<!-- SLIDE 2 -->
+<section data-background-image="img/hudl-bg.jpg" data-transition="zoom-in fade-out">
+  <div class="name-text">Mihai Cîrlănaru</div>
+  <div class="name-sub">Software Development Lead</div>
+  <i class="hudl-logo"></i>
+  <aside class="notes">
+    First off, a bit about myself, my name is Mihai Cirlanaru, I am based in London, working on full-stack web for Hudl, a sports technology company that builds analysis tools for coaches and athletes at all levels to help them win.
+  </aside>
+</section>
+
+<!-- <section data-background-image="img/hudl-video.mp4" data-background-video-loop=true>
+  <aside class="notes">
+    More than 143,000 total active teams across all sports and all levels
+    Totals 5 million active users - coaches, athletes, trainers and analysts
+    99% of American Football teams use Hudl, all 20 premier league teams use our software and 29/30 NBA teams...
+  </aside>
+</section> -->
+
+<!-- SLIDE 4 -->
+<section data-background-image="img/speechwave-1.png" data-transition="fade">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    A continuous sound wave whose amplitude varies based on the sounds involved. The recognition process works as follows
+  </aside>
+</section>
+
+<!-- SLIDE 5 -->
+<section data-background-image="img/speechwave-2.png" data-transition="fade">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    Split the waveform in utterances (words or other non-linguistic sounds) by silences
+  </aside>
+</section>
+
+<!-- SLIDE 6 -->
+<section data-background-image="img/speechwave-3.png" data-transition="fade">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    Each utterance is split in frames
+    For each frame a feature vector is computed -- a set of numbers representing distinguishable properties of a sound
+  </aside>
+</section>
+
+<!-- SLIDE 7 -->
+<section data-background-image="img/speechwave-4.png" data-transition="fade">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    Using a series of models, the search space for a match is significantly reduced and thus recognition is made possible in a finite amount of time:
+    - acoustic model contains acoustic properties for each distinct unit of sound (senone)
+    - phonetic dictionary contains a mapping from words to phones
+    - language model is used to restrict word search
+  </aside>
+</section>
+
+<!-- SLIDE 7' -->
+<section data-background-image="img/speechwave-5.png">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    And for the speech represented here the decoding would be "Hello World" -- just in case you wondered how speech recognizers are assessed
+  </aside>
+</section>
+
+<!-- SLIDE 8 -->
+<section data-background-image="img/performance.png" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    This is how you assess it - Performance measured in terms of:
+    Accuracy: word error rate (WER) = (Substitutions + Deletions + Insertions)/Number words in reference speech
+    Speed: real time factor = ratio between how long it took to decode the speech and how long it actually was
+  </aside>
+</section>
+
+<!-- SLIDE 3 -->
+<section data-background-image="img/longtimeago.png" data-transition="fade">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    I started playing around with speech recognition about 4 years ago when I was studying about it for my Masters degree and was quite intrigued by how hard is the problem it solves -- all the various factors like accent, pronunciation, articulation, roughness, nasality, pitch, volume, and speed influence it.
+
+    In practice, speech looks a lot like this:
+  </aside>
+</section>
+
+
+<!-- SLIDE 10 -->
+<section data-background-image="img/mozilla.jpg" data-transition="fade">
+  <i class="mozilla-logo"></i>
+  <aside class="notes">
+    Towards the end of my studies, I had the great opportunity to put in practice what I learned about speech recognition within the Research Team at Mozilla, to build a speech recognition engine for Firefox OS
+  </aside>
+</section>
+
+<!-- SLIDE 10-p2 -->
+<section data-background-image="img/firefox-os3.jpg" data-transition="fade">
+  <aside class="notes">
+    -- Mozilla’s mobile phone operating system built entirely using web technologies. Being a research project, the focus was more on exploring what is even possible in terms of speech recognition for the web, rather than have something production ready.
+  </aside>
+</section>
+
+<!-- SLIDE 11 -->
+<section data-background-image="img/full-ink.jpg">
+  <div class="name-text">DEMO</div>
+  <div class="name-sub emphasize">github.com/mihai/talk.js</div>
+  <i class="github-repo hero-pic">&nbsp;</i>
+
+  <aside class="notes">
+    During my time there, I have built a pure JavaScript speech recognizer that performs the decoding process on the client, without the need of any cloud-based backend to send the speech to for decoding. And here’s a demo for it:
+
+    If you are interested more on how this was built, and how it works behind the scenes, feel free to grab me after the talk.
+  </aside>
+</section>
+
+<!-- SLIDE 12 -->
+<section data-background-image="img/full-ink.jpg" data-state="speech-end">
+  <div class="name-text">Web Speech API Spec</div>
+  <div class="name-sub emphasize">bit.ly/WebSpeechSpec</div>
+  <i class="spec hero-pic">&nbsp;</i>
+  <aside class="notes">
+    Little did I know when researching this at Mozilla, at around the same time, a team from Google were writing a spec for Web Speech APIs.
+
+    defining JavaScript APIs that would allow developers to incorporate speech recognition into their web pages. About a year later, with Chrome v25, Web Speech APIs were out.
+
+    Whereas Chrome had speech input capabilities with x-webkit-speech attribute (now deprecated) to input fields since v11.
+
+    Ok, so let’s see how these APIs look like in practice
+  </aside>
+</section>
+
+<!-- SLIDE 13 -->
+<section data-background-image="img/full-ink.jpg" data-state="speech-start">
+  <div class="name-text">Web Speech API</div>
+  <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
+
+<pre>
+<code data-trim data-noescape>
+const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+let recognizer = null;
+
+if (!SpeechRecognition) {
+  console.error("Web Speech APIs not supported in your browser");
+} else {
+  recognizer = new SpeechRecognition();
+}
+</code>
+</pre>
+  <aside class="notes">
+    [FIREFOX]
+    You first need to instantiate a Speech Recognition object, and since the APIs are still experimental they do need the browser prefix for Chrome (not for Firefox though)
+  </aside>
+</section>
+
+<!-- SLIDE 14 -->
+<section data-background-image="img/full-ink.jpg">
+  <div class="name-text">Speech Recognition Attributes</div>
+  <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
+<pre>
+<code data-trim data-noescape>
+// Sets the language to be recognized (32 languages
+// supported, incl. Romanian)
+recognizer.lang = 'en-US';
+
+// Get recognition results as early as possible,
+// even if they will change
+recognizer.interimResults = true;
+
+// Continuously listen to speech, regardless if
+// the user takes pauses or not
+recognizer.continuous = true;
+
+// The number of alternative recognition
+// matches to be returned
+recognizer.maxAlternatives = 3;
+
+…
+</code>
+</pre>
+  <aside class="notes">
+    [RETURN]
+    Some of the most relevant configuration attributes of the speech recognition object are
+  </aside>
+</section>
+
+<!-- SLIDE 15 -->
+<section data-background-image="img/full-ink.jpg">
+  <div class="name-text">Speech Recognition Event Handlers</div>
+  <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
+<pre>
+<code data-trim data-noescape>
+recognizer.onresult // Whenever a speech recognition match is found
+recognizer.onnomatch // When no match was found for the current speech
+recognizer.onerror // When an error occurred
+…
+</code>
+</pre>
+  <aside class="notes">
+    [ERROR]
+    There are a few event handlers provided for the Speech Recognition interface, and I would recommend you check the full API at http://bit.ly/WebSpeechAPI, however the minimum needed to get you started are: onresult, onnomatch, onerror
+  </aside>
+</section>
+
+<!-- SLIDE 16 -->
+<section data-background-image="img/full-ink.jpg">
+  <div class="name-text">Speech Recognition Control</div>
+  <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
+<pre>
+<code data-trim data-noescape>
+recognizer.start();
+recognizer.stop();
+</code>
+</pre>
+  <aside class="notes">
+    [FORMAT]
+    In terms of controlling the recognizer we have a pretty self-explanatory API: start and stop.
+    And before we wrap things up, I want to show you how the Speech Recognition Result format looks like.
+  </aside>
+</section>
+
+<!-- SLIDE 17 -->
+<section data-background-image="img/full-ink.jpg">
+  <div class="name-text">Speech Recognition Result format</div>
+  <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
+<pre>
+<code data-trim data-noescape>
+{
+  isFinal: true,
+  resultIndex: 3,
+  results: [
+    [
+      { transcript: "hello" }
+    ],
+    [
+      { transcript: "world"},
+      { transcript: "word"},
+      …
+    ],
+    …
+  ]
+  …
+}
+</code>
+</pre>
+  <aside class="notes">
+    [STRAIGHT]
+    SpeechRecognitionResult array and each result has multiple alternatives results[0][0].transcript to get the first result with highest probability
+    isFinal -- this result is not an interim result and thus it will not change
+    This seems quite straight forward, did anyone notice something?
+  </aside>
+</section>
+
+<!-- SLIDE 18 -->
+<section data-background-image="img/full-ink.jpg" data-state="speech-continuous">
+  <div class="name-text">DEMO</div>
+  <div class="name-sub emphasize">Web Speech API</div>
+
+  <div id="results">
+    <span id="final_span" class="final"></span>
+    <span id="interim_span" class="interim"></span>
+  </div>
+  <aside class="notes">
+    For the past few slides I didn’t actually click anything to switch between them [PAUSE] I was basically using Speech Recognition to talk about Speech Recognition (navigate through the slides), how meta is that?
+
+    You might be wondering can I use this now, or is it behind crazy browser flags that no user will know how to turn on to make use of your app’s speech recognition capabilities?
+  </aside>
+</section>
+
+<!-- SLIDE 19 -->
+<section data-background-image="img/full-ink.jpg" data-state="speech-end" data-transition="slide-in fade-out">
+  <div class="name-text">Browser Support</div>
+  <div class="name-sub emphasize">caniuse.com/#feat=speech-recognition</div>
+  <i class="browser-support hero-pic">&nbsp;</i>
+  <aside class="notes">
+    As you can see support is not that great, it’s only Chrome and Opera that support it out of the box, whereas Firefox needs the webspeech recognition flag set. As I understand Microsoft is currently working on it.
+
+    This might sound unfortunate, but as we all know, it takes quite a bit of time for a web API to be part of the official spec and all browsers to support it…
+  </aside>
+</section>
+
+<!-- SLIDE 20 -->
+<section data-background-image="img/hudl-layout-main.png" data-transition="fade">
+  <h2>Thank You</h2>
+  <!-- <h4 class="name-sub">Questions?</h4> -->
+  <div class="name">
+    <div class="name-text">Mihai Cîrlănaru</div>
+    <div class="name-sub">@MCirlanaru</div>
+  </div>
+  <div class="main">
+    <div class="main-container">
+      <i class="conf-logo-secondary"></i>
+    </div>
+  </div>
+  <aside class="notes">
+    And on that note, thank you very much for listening, hope my talk inspired you to build some exciting new features in your web applications. If you have any questions, feel free to ping me on twitter, the JSConf slack, and in person.
+  </aside>
+</section>
+
+      </div>
+    </div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+function linebreak(s) {
+  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+}
+var first_char = /\S/;
+function capitalize(s) {
+  return s.replace(first_char, function(m) { return m.toUpperCase(); });
+}
+
+var KEYWORDS = ['fox', 'practice', 'return', 'error', 'format', 'straight'];
+var final_transcript = '';
+var slide_transcript = '';
+var final_span = document.getElementById('final_span');
+var interim_span = document.getElementById('interim_span');
+var listeningToSpeech = false;
+var recognizerTimeout = null;
+var recognizer = {};
+
+var isSpeakerNotes = document.URL.indexOf('?receiver') !== -1;
+
+function resetSpeech() {
+  final_transcript = '';
+  slide_transcript = '';
+  listeningToSpeech = false;
+  final_span.innerHTML = '';
+  interim_span.innerHTML = '';
+
+  if (!isSpeakerNotes) {
+    // Setup speech recognition
+    if (recognizer.abort) recognizer.abort();
+
+    recognizer = new webkitSpeechRecognition();
+    recognizer.continuous = true;
+    recognizer.lang = "en-US";
+    recognizer.maxAlternatives = 3;
+    recognizer.interimResults = true;
+  }
+}
+
+// Initialize speech recognizer
+resetSpeech();
+
+// More info https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+  history: true,
+  controls: false,
+  keyboard: {
+    // ENTER KEY
+    13: function() {
+      if (!listeningToSpeech) {
+        recognizer.start();
+        listeningToSpeech = true;
+      } else {
+        recognizer.stop();
+        listeningToSpeech = false;
+      }
+    },
+    // SPACE KEY
+    32: function() {
+      recognizer.abort();
+      resetSpeech();
+      console.log('RESET SPEECH RECOGNIZER');
+    },
+    // UP KEY
+    38: 'prev',
+    40: 'next'
+  },
+  // width: 1920,
+  // height: 1080,
+  width: 1280,
+  height: 720,
+
+  // More info https://github.com/hakimel/reveal.js#dependencies
+  dependencies: [
+    { src: 'plugin/markdown/marked.js' },
+    { src: 'plugin/markdown/markdown.js' },
+    { src: 'plugin/notes/notes.js', async: true },
+    { src: 'plugin/zoom-js/zoom.js', async: true },
+    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+  ]
+});
+
+if (!isSpeakerNotes) {
+recognizer.onend = function(event) {
+  console.warn('SPEECH END', event);
+}
+
+recognizer.onresult = function(event) {
+  var foundKeyword = false;
+  for (var i = 0, len = KEYWORDS.length; i < len && !foundKeyword; i++) {
+    var keyword = KEYWORDS[i];
+    if (slide_transcript.toLowerCase().indexOf(keyword) !== -1) {
+      slide_transcript = '';
+      foundKeyword = true;
+      KEYWORDS.splice(i, 1);
+      Reveal.next();
+    }
+  }
+
+  var interim_transcript = '';
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    if (event.results[i].isFinal) {
+      final_transcript += event.results[i][0].transcript;
+    } else {
+      interim_transcript += event.results[i][0].transcript;
+      slide_transcript += event.results[i][0].transcript;
+    }
+
+  }
+  final_transcript = capitalize(final_transcript);
+  final_span.innerHTML = linebreak(final_transcript);
+  interim_span.innerHTML = linebreak(interim_transcript);
+
+  console.log('SPEECH RESULT INTERIM:', interim_transcript);
+  console.log('SPEECH RESULT FINAL:', final_transcript);
+};
+
+recognizer.onerror = function(event) {
+  console.error('ERROR:', event);
+  if (event.error === 'network' || event.error === 'aborted') {
+    console.log('SPEECH RESTART');
+    recognizer.stop();
+    if (recognizerTimeout) {
+      clearTimeout(recognizerTimeout);
+      recognizerTimeout = null;
+    }
+    recognizerTimeout = setTimeout(function(){
+      console.log('SPEECH STARTING...');
+      recognizer.start();
+      listeningToSpeech = true;
+    }, 500);
+  }
+
+  // Reveal.next();
+};
+}
+
+Reveal.addEventListener( 'slidechanged', function( event ) {
+  // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+  console.log('SLIDE CHANGED');
+  slide_transcript = '';
+  if (listeningToSpeech) {
+    recognizer.abort();
+    if (recognizerTimeout) {
+      clearTimeout(recognizerTimeout);
+      recognizerTimeout = null;
+    }
+    recognizerTimeout = setTimeout(function(){
+      recognizer.start();
+      console.log('SPEECH RESTART');
+    }, 500);
+  }
+} );
+
+if (!isSpeakerNotes) {
+Reveal.addEventListener( 'speech-start', function(ev) {
+  // Start recognition
+  recognizer.start();
+  listeningToSpeech = true;
+  console.log('SPEECH START SLIDE')
+}, false );
+
+Reveal.addEventListener( 'speech-continuous', function(ev) {
+  // Reset final transcript
+  // resetSpeech();
+  // recognizer.start();
+
+  final_transcript = '';
+  final_span.innerHTML = '';
+  interim_span.innerHTML = '';
+  console.log('SPEECH continuous SLIDE')
+}, false );
+
+
+Reveal.addEventListener( 'speech-end', function(ev) {
+  // Start recognition
+  recognizer.abort();
+  listeningToSpeech = false;
+  console.log('SPEECH STOP SLIDE')
+}, false );
+}
+</script>
+  </body>
+</html>
