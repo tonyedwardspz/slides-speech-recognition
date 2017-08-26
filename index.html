@@ -139,13 +139,23 @@
         margin: 10px auto;
       }
 
-			.title_main {
-				margin-top: -2rem;
-				margin-left: 20rem;
+			.reveal h3.title-main {
+				margin-top: -2.5rem;
 			}
-			.title-main__em {
+			.reveal span.title-main__em {
 				font-size: 170%;
 			}
+
+      .voice-visualizer path{
+        stroke-linecap: square;
+        stroke: white;
+        stroke-width: 0.5px;
+      }
+
+      .voice-visualizer svg {
+        width: 22rem;
+        height: 8.5rem;
+      }
 
     </style>
   </head>
@@ -156,7 +166,25 @@
 <!-- SLIDE 1 -->
 <section data-background-image="img/full-ink.jpg" data-transition="slide">
   <h2>Speech Recognition</h2>
-  <h3 class="title-main">on the <span class="emphasize title-main__em">Web</span></h3>
+  <h3 class="title-main">
+    <span class="voice-visualizer">
+      <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <mask id="mask">
+            <g id="maskGroup"></g>
+          </mask>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(250, 250, 250, 1.0);stop-opacity:1" />
+            <stop offset="20%" style="stop-color:rgba(215, 217, 221, 1.0);stop-opacity:1" />
+            <stop offset="90%" style="stop-color:rgba(100, 101, 102, 1.0);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgba(56, 67, 79, 1.0);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
+      </svg>
+    </span>
+    on the <span class="emphasize title-main__em">Web</span>
+  </h3>
   <div class="name">
     <div class="name-text">Mihai Cîrlănaru</div>
     <div class="name-sub">@MCirlanaru</div>
@@ -529,6 +557,49 @@ recognizer.stop();
 <script src="js/reveal.js"></script>
 
 <script>
+
+var paths = document.getElementsByTagName('path');
+var visualizer = document.getElementById('visualizer');
+var mask = visualizer.getElementById('mask');
+var path;
+var NR_LINES = 40;
+
+var soundAllowedCallback = function (stream) {
+    //Audio stops listening in FF without // window.persistAudioStream = stream;
+    //https://bugzilla.mozilla.org/show_bug.cgi?id=965483
+    //https://support.mozilla.org/en-US/questions/984179
+    window.persistAudioStream = stream;
+    var audioContent = new AudioContext();
+    var audioStream = audioContent.createMediaStreamSource( stream );
+    var analyser = audioContent.createAnalyser();
+    audioStream.connect(analyser);
+    analyser.fftSize = 1024;
+
+    var frequencyArray = new Uint8Array(analyser.frequencyBinCount);
+    visualizer.setAttribute('viewBox', `0 0 ${NR_LINES} 255`);
+
+    //Through the frequencyArray has a length longer than 255, there seems to be no
+    //significant data after this point. Not worth visualizing.
+    for (var i = 0 ; i < NR_LINES; i++) {
+        path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        // path.setAttribute('stroke-dasharray', '4,1');
+        mask.appendChild(path);
+    }
+    var doDraw = function () {
+        requestAnimationFrame(doDraw);
+        analyser.getByteFrequencyData(frequencyArray);
+        var adjustedLength;
+        for (var i = 0 ; i < NR_LINES; i++) {
+            adjustedLength = Math.floor(frequencyArray[i]) - (Math.floor(frequencyArray[i]) % 5);
+            paths[i].setAttribute('d', 'M '+ (i) +',255 l 0,-' + adjustedLength);
+        }
+
+    }
+    doDraw();
+}
+
+navigator.getUserMedia({ audio: true }, soundAllowedCallback, function(){});
+
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 function linebreak(s) {
