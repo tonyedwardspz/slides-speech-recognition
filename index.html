@@ -27,7 +27,7 @@
       <div class="slides">
 
 <!-- SLIDE 1 -->
-<section data-background-image="img/full-ink.jpg" data-transition="slide">
+<section data-background-image="img/full-ink.jpg" data-transition="slide" data-state="intro">
   <h2>Speech Recognition</h2>
   <h3 class="title-main">
     <span class="voice-visualizer">
@@ -418,8 +418,23 @@ recognizer.stop();
 </section>
 
 <!-- SLIDE 26 -->
-<section data-background-image="img/hudl-layout-main.png" data-transition="fade">
-  <h2>Thank You</h2>
+<section data-background-image="img/hudl-layout-main.png" data-transition="fade" data-state="voice-visualizer">
+  <h2><span class="voice-visualizer">
+    <svg preserveAspectRatio="none" id="visualizer-end" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <mask id="mask-end">
+          <g id="maskGroup"></g>
+        </mask>
+        <linearGradient id="gradient-end" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:rgba(250, 250, 250, 1.0);stop-opacity:1" />
+          <stop offset="20%" style="stop-color:rgba(215, 217, 221, 1.0);stop-opacity:1" />
+          <stop offset="90%" style="stop-color:rgba(255, 140, 0, 1.0);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:rgba(255, 99, 0, 1.0);stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-end)" mask="url(#mask-end)"></rect>
+    </svg>
+  </span></h2>
   <!-- <h4 class="name-sub">Questions?</h4> -->
   <div class="name">
     <div class="name-text">Mihai Cîrlănaru</div>
@@ -445,7 +460,9 @@ recognizer.stop();
 
 var paths = document.getElementsByTagName('path');
 var visualizer = document.getElementById('visualizer');
-var mask = visualizer.getElementById('mask');
+var visualizerEnd = document.getElementById('visualizer-end');
+var mask1 = visualizer.getElementById('mask');
+var mask2 = visualizerEnd.getElementById('mask-end');
 var path;
 var NR_LINES = 40;
 
@@ -462,13 +479,15 @@ var soundAllowedCallback = function (stream) {
 
     var frequencyArray = new Uint8Array(analyser.frequencyBinCount);
     visualizer.setAttribute('viewBox', `0 0 ${NR_LINES} 255`);
+    visualizerEnd.setAttribute('viewBox', `0 0 ${NR_LINES} 255`);
 
     //Through the frequencyArray has a length longer than 255, there seems to be no
     //significant data after this point. Not worth visualizing.
     for (var i = 0 ; i < NR_LINES; i++) {
-        path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        // path.setAttribute('stroke-dasharray', '4,1');
-        mask.appendChild(path);
+        path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        mask1.appendChild(path1);
+        mask2.appendChild(path2);
     }
     var doDraw = function () {
         requestAnimationFrame(doDraw);
@@ -665,6 +684,16 @@ Reveal.addEventListener( 'speech-end', function(ev) {
   recognizer.abort();
   listeningToSpeech = false;
   console.log('SPEECH STOP SLIDE')
+}, false );
+
+Reveal.addEventListener( 'intro', function(ev) {
+  var visualizer = document.getElementById('visualizer');
+  paths = document.getElementsByTagName('path');
+}, false );
+
+Reveal.addEventListener( 'voice-visualizer', function(ev) {
+  var visualizer = document.getElementById('visualizer-end');
+  paths = visualizer.getElementsByTagName('path');
 }, false );
 }
 </script>
