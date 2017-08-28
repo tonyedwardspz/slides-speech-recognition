@@ -560,11 +560,11 @@ Reveal.initialize({
     // ENTER KEY
     13: function() {
       if (!listeningToSpeech) {
-        console.warn('KEY SPEECH START', event);
+        console.info('KEY SPEECH START');
         recognizer.start();
         listeningToSpeech = true;
       } else {
-        console.warn('KEY SPEECH END', event);
+        console.info('KEY SPEECH END');
         recognizer.stop();
         listeningToSpeech = false;
       }
@@ -573,7 +573,7 @@ Reveal.initialize({
     32: function() {
       recognizer.abort();
       resetSpeech();
-      console.log('RESET SPEECH RECOGNIZER');
+      console.warn('RESET SPEECH RECOGNIZER');
     },
     // UP KEY
     38: 'prev',
@@ -596,7 +596,7 @@ Reveal.initialize({
 
 if (!isSpeakerNotes) {
   recognizer.onend = function(event) {
-    console.warn('SPEECH END', event);
+    console.warn('SPEECH END');
     listeningToSpeech = false;
   }
 
@@ -615,21 +615,23 @@ if (!isSpeakerNotes) {
     final_span.innerHTML = linebreak(final_transcript);
     interim_span.innerHTML = linebreak(interim_transcript);
 
-    console.log('SPEECH RESULT INTERIM:', interim_transcript);
-    console.log('SPEECH RESULT FINAL:', final_transcript);
+    console.group('SPEECH RESULT');
+    console.info('INTERIM:', interim_transcript);
+    console.info('FINAL:', final_transcript);
+    console.groupEnd();
   };
 
   recognizer.onerror = function(event) {
-    console.error('ERROR:', event);
+    console.error('ERROR:', event.error);
     if (event.error === 'network' || event.error === 'aborted') {
-      console.log('SPEECH RESTART');
+      console.info('SPEECH RESTART');
       recognizer.stop();
       if (recognizerTimeout) {
         clearTimeout(recognizerTimeout);
         recognizerTimeout = null;
       }
       recognizerTimeout = setTimeout(function(){
-        console.log('SPEECH STARTING...');
+        console.info('SPEECH STARTING...');
         recognizer.start();
         listeningToSpeech = true;
       }, 500);
@@ -638,14 +640,14 @@ if (!isSpeakerNotes) {
 
   Reveal.addEventListener( 'slidechanged', function( event ) {
     // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-    console.log('SLIDE CHANGED', event.indexh);
+    console.info('SLIDE CHANGED', event.indexh);
   } );
 
   Reveal.addEventListener( 'speech-start', function(ev) {
     // Start recognition
     recognizer.start();
     listeningToSpeech = true;
-    console.log('SPEECH START SLIDE')
+    console.info('SPEECH START SLIDE')
   }, false );
 
   Reveal.addEventListener( 'intro', function(ev) {
