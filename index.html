@@ -390,7 +390,7 @@ recognizer.stop();
 </section>
 
 <!-- SLIDE 24 -->
-<section data-background-image="img/full-ink.jpg" data-state="speech-continuous">
+<!-- <section data-background-image="img/full-ink.jpg">
   <div class="name-text">DEMO</div>
   <div class="name-sub emphasize">Web Speech API</div>
 
@@ -403,7 +403,7 @@ recognizer.stop();
 
     You might be wondering can I use this now, or is it behind crazy browser flags that no user will know how to turn on to make use of your app’s speech recognition capabilities?
   </aside>
-</section>
+</section> -->
 
 <!-- SLIDE 25 -->
 <section data-background-image="img/full-ink.jpg" data-state="speech-end" data-transition="slide-in fade-out">
@@ -418,8 +418,8 @@ recognizer.stop();
 </section>
 
 <!-- SLIDE 26 -->
-<section data-background-image="img/hudl-layout-main.png" data-transition="fade" data-state="voice-visualizer">
-  <h2><span class="voice-visualizer">
+<section data-background-image="img/hudl-layout-main.png" data-transition="fade" data-state="voice-visualizer speech-start">
+  <h3><span class="voice-visualizer">
     <svg preserveAspectRatio="none" id="visualizer-end" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <mask id="mask-end">
@@ -434,8 +434,11 @@ recognizer.stop();
       </defs>
       <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-end)" mask="url(#mask-end)"></rect>
     </svg>
-  </span></h2>
-  <!-- <h4 class="name-sub">Questions?</h4> -->
+  </span></h3>
+  <div id="results">
+    <span id="final_span" class="final"></span>
+    <span id="interim_span" class="interim"></span>
+  </div>
   <div class="name">
     <div class="name-text">Mihai Cîrlănaru</div>
     <div class="name-sub">@MCirlanaru</div>
@@ -506,15 +509,17 @@ navigator.getUserMedia({ audio: true }, soundAllowedCallback, function(){});
 
 var two_line = /\n\n/g;
 var one_line = /\n/g;
+var thank_you = /thank\s+you/gi;
 function linebreak(s) {
   return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
 }
 var first_char = /\S/;
 function capitalize(s) {
-  return s.replace(first_char, function(m) { return m.toUpperCase(); });
+  return s.replace(first_char, function(m) {
+    return m.toUpperCase();
+  }).replace(thank_you, '<br><span class="thanks">thank you</span>');
 }
 
-var KEYWORDS = ['fox', 'practice', 'return', 'error', 'format', 'straight'];
 var final_transcript = '';
 var slide_transcript = '';
 var final_span = document.getElementById('final_span');
@@ -555,9 +560,11 @@ Reveal.initialize({
     // ENTER KEY
     13: function() {
       if (!listeningToSpeech) {
+        console.warn('KEY SPEECH START', event);
         recognizer.start();
         listeningToSpeech = true;
       } else {
+        console.warn('KEY SPEECH END', event);
         recognizer.stop();
         listeningToSpeech = false;
       }
@@ -588,113 +595,68 @@ Reveal.initialize({
 });
 
 if (!isSpeakerNotes) {
-recognizer.onend = function(event) {
-  console.warn('SPEECH END', event);
-}
-
-recognizer.onresult = function(event) {
-  var foundKeyword = false;
-  for (var i = 0, len = KEYWORDS.length; i < len && !foundKeyword; i++) {
-    var keyword = KEYWORDS[i];
-    if (slide_transcript.toLowerCase().indexOf(keyword) !== -1) {
-      slide_transcript = '';
-      foundKeyword = true;
-      KEYWORDS.splice(i, 1);
-      Reveal.next();
-    }
+  recognizer.onend = function(event) {
+    console.warn('SPEECH END', event);
+    listeningToSpeech = false;
   }
 
-  var interim_transcript = '';
-  for (var i = event.resultIndex; i < event.results.length; ++i) {
-    if (event.results[i].isFinal) {
-      final_transcript += event.results[i][0].transcript;
-    } else {
-      interim_transcript += event.results[i][0].transcript;
-      slide_transcript += event.results[i][0].transcript;
+  recognizer.onresult = function(event) {
+    var interim_transcript = '';
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+        slide_transcript += event.results[i][0].transcript;
+      }
+
     }
+    final_transcript = capitalize(final_transcript);
+    final_span.innerHTML = linebreak(final_transcript);
+    interim_span.innerHTML = linebreak(interim_transcript);
 
-  }
-  final_transcript = capitalize(final_transcript);
-  final_span.innerHTML = linebreak(final_transcript);
-  interim_span.innerHTML = linebreak(interim_transcript);
+    console.log('SPEECH RESULT INTERIM:', interim_transcript);
+    console.log('SPEECH RESULT FINAL:', final_transcript);
+  };
 
-  console.log('SPEECH RESULT INTERIM:', interim_transcript);
-  console.log('SPEECH RESULT FINAL:', final_transcript);
-};
-
-recognizer.onerror = function(event) {
-  console.error('ERROR:', event);
-  if (event.error === 'network' || event.error === 'aborted') {
-    console.log('SPEECH RESTART');
-    recognizer.stop();
-    if (recognizerTimeout) {
-      clearTimeout(recognizerTimeout);
-      recognizerTimeout = null;
-    }
-    recognizerTimeout = setTimeout(function(){
-      console.log('SPEECH STARTING...');
-      recognizer.start();
-      listeningToSpeech = true;
-    }, 500);
-  }
-
-  // Reveal.next();
-};
-}
-
-Reveal.addEventListener( 'slidechanged', function( event ) {
-  // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-  console.log('SLIDE CHANGED');
-  slide_transcript = '';
-  if (listeningToSpeech) {
-    recognizer.abort();
-    if (recognizerTimeout) {
-      clearTimeout(recognizerTimeout);
-      recognizerTimeout = null;
-    }
-    recognizerTimeout = setTimeout(function(){
-      recognizer.start();
+  recognizer.onerror = function(event) {
+    console.error('ERROR:', event);
+    if (event.error === 'network' || event.error === 'aborted') {
       console.log('SPEECH RESTART');
-    }, 500);
-  }
-} );
+      recognizer.stop();
+      if (recognizerTimeout) {
+        clearTimeout(recognizerTimeout);
+        recognizerTimeout = null;
+      }
+      recognizerTimeout = setTimeout(function(){
+        console.log('SPEECH STARTING...');
+        recognizer.start();
+        listeningToSpeech = true;
+      }, 500);
+    }
+  };
 
-if (!isSpeakerNotes) {
-Reveal.addEventListener( 'speech-start', function(ev) {
-  // Start recognition
-  recognizer.start();
-  listeningToSpeech = true;
-  console.log('SPEECH START SLIDE')
-}, false );
+  Reveal.addEventListener( 'slidechanged', function( event ) {
+    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+    console.log('SLIDE CHANGED', event.indexh);
+  } );
 
-Reveal.addEventListener( 'speech-continuous', function(ev) {
-  // Reset final transcript
-  // resetSpeech();
-  // recognizer.start();
+  Reveal.addEventListener( 'speech-start', function(ev) {
+    // Start recognition
+    recognizer.start();
+    listeningToSpeech = true;
+    console.log('SPEECH START SLIDE')
+  }, false );
 
-  final_transcript = '';
-  final_span.innerHTML = '';
-  interim_span.innerHTML = '';
-  console.log('SPEECH continuous SLIDE')
-}, false );
+  Reveal.addEventListener( 'intro', function(ev) {
+    var visualizer = document.getElementById('visualizer');
+    paths = document.getElementsByTagName('path');
+  }, false );
 
-
-Reveal.addEventListener( 'speech-end', function(ev) {
-  // Start recognition
-  recognizer.abort();
-  listeningToSpeech = false;
-  console.log('SPEECH STOP SLIDE')
-}, false );
-
-Reveal.addEventListener( 'intro', function(ev) {
-  var visualizer = document.getElementById('visualizer');
-  paths = document.getElementsByTagName('path');
-}, false );
-
-Reveal.addEventListener( 'voice-visualizer', function(ev) {
-  var visualizer = document.getElementById('visualizer-end');
-  paths = visualizer.getElementsByTagName('path');
-}, false );
+  Reveal.addEventListener( 'voice-visualizer', function(ev) {
+    var visualizer = document.getElementById('visualizer-end');
+    paths = visualizer.getElementsByTagName('path');
+  }, false );
 }
 </script>
   </body>

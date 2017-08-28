@@ -38,7 +38,14 @@
   background: url("../img/fec-logo.svg") no-repeat 50%;
   background-size: contain;
   position: absolute;
+}
+
+.conf-logo {
   top: 0;
+}
+
+.conf-logo-secondary {
+  top: 20%;
 }
 
 .hudl-logo {
@@ -104,15 +111,23 @@
   padding-right: 3px;
 }
 .interim {
-  color: gray;
+  color: rgba(19, 41, 63, 0.4);
 }
 #results {
   font-size: .75em;
-  padding: 15px;
   text-align: left;
-  min-height: 150px;
-  width: 75%;
-  margin: 10px auto;
+  height: 250px;
+  width: 60%;
+  overflow: scroll;
+  margin: 0 auto;
+  margin-right: 30%;
+  line-height: 1.2;
+}
+
+span.thanks {
+  font-size: 2em;
+  font-weight: bold;
+  opacity: .7;
 }
 
 .reveal h3.title-main {
