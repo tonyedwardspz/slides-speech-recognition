@@ -80,6 +80,11 @@
   background-size: contain;
 }
 
+.privacy {
+  background: url("../img/privacy.png") no-repeat 50%;
+  background-size: contain;
+}
+
 .spec {
   background: url("../img/spec.png") no-repeat 50%;
   background-size: contain;
