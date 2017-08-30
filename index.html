@@ -59,9 +59,11 @@
   </div>
 
   <aside class="notes">
-    Thanks for having me here, it’s amazing to be back home in front of such a big crowd of enthusiasts.
-
-    For the next half an hour I will be talking to you about a topic I am very passionate about, Speech Recognition. And most excitingly of all, about how to empower your web application with voice-triggered interactions.
+    Thanks for having me here, first time I'm attending Frontend Conf -- actually first time in Switzerland --
+    and I'm very excited about being in front of you all.
+    <br><br>
+    For the next half an hour I will be talking to you about a topic I am quite passionate about, Speech Recognition.
+    <b>WHY</b> it's a such a big deal these days, <b>HOW</b> it works, and <b>HOW</b> to use it on the web
   </aside>
 </section>
 
@@ -71,7 +73,9 @@
   <div class="name-sub">Software Development Lead</div>
   <i class="hudl-logo"></i>
   <aside class="notes">
-    First off, a bit about myself, my name is Mihai Cirlanaru, I am based in London, working on full-stack web for Hudl, a sports technology company that builds analysis tools for coaches and athletes at all levels to help them win.
+    First off, a bit about myself, my name is Mihai, I am based in Germany, almost did a PhD in NLP a few years back,
+    but went to the dark side (joined a startup) and now I'm a team lead working on full-stack web for Hudl,
+    a sports technology company that builds performance analysis tools for coaches and athletes.
   </aside>
 </section>
 
@@ -83,11 +87,20 @@
   </aside>
 </section> -->
 
+
+ <!-- TITLE SLIDE -->
+
 <!-- SLIDE 3 -->
 <section data-background-image="img/siri.jpg" data-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
-    In case you don't already use personal assistant apps like siri, Speech recognition:
+    Speech Recognigion has been around for decades (early 1950s) but because it is such a HARD problem (just think of
+    all the factors that play into it: accent, pronunciation, articulation, roughness, nasality, pitch, volume, and speed)
+    it was mainly targetting highly specialized domains:<br>
+    - speaker dependent<br>
+    - command based/limited vocab: e.g. call routing, digit recognition<br>
+    <br>
+    But then, technology caught up and starting In case you don't already use personal assistant apps like siri, Speech recognition:
     Speaker independent: regardless of the speaker
     Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
 
@@ -153,13 +166,6 @@
 </section>
 
 <!-- SLIDE 9 -->
-<section data-background-image="img/voice-research.png" data-transition="slide" data-background-transition="slide">
-  <p>&nbsp;</p>
-  <aside class="notes">
-  </aside>
-</section>
-
-<!-- SLIDE 10 -->
 <section data-background-image="img/performance.png" data-transition="slide" data-background-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
@@ -169,10 +175,24 @@
   </aside>
 </section>
 
+<!-- SLIDE 10 -->
+<section data-background-image="img/voice-research.png" data-transition="slide" data-background-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    wrap-up with examples
+    interacting with other applications
+    now that we seen how big of deal is let's see how it works
+  </aside>
+</section>
+
+<!-- TITLE SLIDE -->
+
+
 <!-- SLIDE 11 -->
 <section data-background-image="img/speechwave-1.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
+
     A continuous sound wave whose amplitude varies based on the sounds involved. The recognition process works as follows
   </aside>
 </section>
@@ -253,7 +273,7 @@
 </section>
 
 <!-- SLIDE 18 -->
-<section data-background-image="img/full-ink.jpg" data-state="speech-end">
+<section data-background-image="img/full-ink.jpg">
   <div class="name-text">Web Speech API Spec</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechSpec</div>
   <i class="spec hero-pic">&nbsp;</i>
@@ -269,7 +289,7 @@
 </section>
 
 <!-- SLIDE 19 -->
-<section data-background-image="img/full-ink.jpg" data-state="speech-start">
+<section data-background-image="img/full-ink.jpg">
   <div class="name-text">Web Speech API</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
 
@@ -417,7 +437,7 @@ recognizer.stop();
 </section> -->
 
 <!-- SLIDE 25 -->
-<section data-background-image="img/full-ink.jpg" data-state="speech-end" data-transition="slide-in fade-out">
+<section data-background-image="img/full-ink.jpg" data-transition="slide-in fade-out">
   <div class="name-text">Browser Support</div>
   <div class="name-sub emphasize">caniuse.com/#feat=speech-recognition</div>
   <i class="browser-support hero-pic">&nbsp;</i>
@@ -425,6 +445,7 @@ recognizer.stop();
     As you can see support is not that great, it’s only Chrome and Opera that support it out of the box, whereas Firefox needs the webspeech recognition flag set. As I understand Microsoft is currently working on it.
 
     This might sound unfortunate, but as we all know, it takes quite a bit of time for a web API to be part of the official spec and all browsers to support it…
+    this image might look grim, but hey the global browser usage percentage is 60% and FF supports it behind a config flag
   </aside>
 </section>
 
