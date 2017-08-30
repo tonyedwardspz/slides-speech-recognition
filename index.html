@@ -8,9 +8,10 @@
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/night.css">
-
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/styles.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -20,143 +21,33 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
-
-    <style>
-      .reveal pre {
-        font-size: .85em;
-        box-shadow: none;
-      }
-
-      .reveal pre code {
-        max-height: 80%;
-				font-size: .75em;
-				line-height: 1;
-      }
-
-      .reveal h1,
-      .reveal h2,
-      .reveal h3 {
-        font-family: "Helvetica Neue", Helvetica, sans-serif;
-      }
-
-      .reveal .main {
-        width: 200%;
-        height: 500px;
-        position: absolute;
-        left: -50%;
-        top: -125px;
-        z-index: -1;
-      }
-
-      .main-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-      }
-
-      .conf-logo,
-      .conf-logo-secondary {
-        display: block;
-        width: 100%;
-        height: 10%;
-        background: url("img/fec-logo.svg") no-repeat 50%;
-        background-size: contain;
-        position: absolute;
-        top: 0;
-      }
-
-      .hudl-logo {
-        display: block;
-        width: 300px;
-        height: 150px;
-        background: url("img/hudl-logo.png") no-repeat 50%;
-        background-size: contain;
-        margin: 0 auto;
-        transform: translateX(-20px);
-      }
-
-      .mozilla-logo {
-        display: block;
-        width: 300px;
-        height: 150px;
-        background: url("img/mozilla-logo.jpg") no-repeat 50%;
-        background-size: contain;
-        margin: 0 auto;
-      }
-
-      .hero-pic {
-        display: block;
-        width: 75%;
-        height: 400%;
-        position: absolute;
-        left: 50%;
-      }
-
-      .github-repo {
-        background: url("img/github.png") no-repeat 50%;
-        background-size: contain;
-      }
-
-      .spec {
-        background: url("img/spec.png") no-repeat 50%;
-        background-size: contain;
-      }
-
-      .browser-support {
-        background: url("img/browser-support.png") no-repeat 50%;
-        background-size: contain;
-        /*transform: translateX(-50%);*/
-        left:12%;
-      }
-
-      .emphasize {
-        color: #ff6500 !important;
-      }
-
-      .reveal .name-text {
-        margin-top: 100px;
-        font-size: 1em;
-      }
-
-      .reveal .name-sub {
-        opacity: .7;
-        font-size: .75em;
-      }
-
-      .final {
-        color: white;
-        padding-right: 3px;
-      }
-      .interim {
-        color: gray;
-      }
-      #results {
-        font-size: .75em;
-        padding: 15px;
-        text-align: left;
-        min-height: 150px;
-        width: 75%;
-        margin: 10px auto;
-      }
-
-			.title_main {
-				margin-top: -2rem;
-				margin-left: 20rem;
-			}
-			.title-main__em {
-				font-size: 170%;
-			}
-
-    </style>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
 
 <!-- SLIDE 1 -->
-<section data-background-image="img/full-ink.jpg" data-transition="slide">
+<section data-background-image="img/full-ink.jpg" data-transition="slide" data-state="intro">
   <h2>Speech Recognition</h2>
-  <h3 class="title-main">on the <span class="emphasize title-main__em">Web</span></h3>
+  <h3 class="title-main">
+    <span class="voice-visualizer">
+      <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <mask id="mask">
+            <g id="maskGroup"></g>
+          </mask>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(250, 250, 250, 1.0);stop-opacity:1" />
+            <stop offset="20%" style="stop-color:rgba(215, 217, 221, 1.0);stop-opacity:1" />
+            <stop offset="90%" style="stop-color:rgba(100, 101, 102, 1.0);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgba(56, 67, 79, 1.0);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
+      </svg>
+    </span>
+    on the <span class="emphasize title-main__em">Web</span>
+  </h3>
   <div class="name">
     <div class="name-text">Mihai Cîrlănaru</div>
     <div class="name-sub">@MCirlanaru</div>
@@ -171,60 +62,6 @@
     Thanks for having me here, it’s amazing to be back home in front of such a big crowd of enthusiasts.
 
     For the next half an hour I will be talking to you about a topic I am very passionate about, Speech Recognition. And most excitingly of all, about how to empower your web application with voice-triggered interactions.
-  </aside>
-</section>
-
-<!-- SLIDE 9 -->
-<section data-background-image="img/siri.jpg" data-transition="slide">
-  <p>&nbsp;</p>
-  <aside class="notes">
-    In case you don't already use personal assistant apps like siri, Speech recognition:
-    Speaker independent: regardless of the speaker
-    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
-
-    “Voice User Interface” -- command based/limited vocabulary
-      Voice dialing
-      Call routing
-      Simple data entry
-    Dictation/Notes taking -- free form speech
-  </aside>
-</section>
-<!-- SLIDE 9 -->
-<section data-background-image="img/alexa-2.jpg" data-transition="slide">
-  <p>&nbsp;</p>
-  <aside class="notes">
-    In case you don't already use personal assistant apps like siri, Speech recognition:
-    Speaker independent: regardless of the speaker
-    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
-
-    “Voice User Interface” -- command based/limited vocabulary
-      Voice dialing
-      Call routing
-      Simple data entry
-    Dictation/Notes taking -- free form speech
-  </aside>
-</section>
-<!-- SLIDE 9 -->
-<section data-background-image="img/google-home.webp" data-transition="slide">
-  <p>&nbsp;</p>
-  <aside class="notes">
-    In case you don't already use personal assistant apps like siri, Speech recognition:
-    Speaker independent: regardless of the speaker
-    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
-
-    “Voice User Interface” -- command based/limited vocabulary
-      Voice dialing
-      Call routing
-      Simple data entry
-    Dictation/Notes taking -- free form speech
-  </aside>
-</section>
-
-<!-- SLIDE 9 -->
-<section data-background-image="img/google-home.webp" data-transition="slide">
-  <p>&nbsp;</p>
-  <aside class="notes">
-    eMarket report
   </aside>
 </section>
 
@@ -246,7 +83,93 @@
   </aside>
 </section> -->
 
+<!-- SLIDE 3 -->
+<section data-background-image="img/siri.jpg" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    In case you don't already use personal assistant apps like siri, Speech recognition:
+    Speaker independent: regardless of the speaker
+    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
+
+    “Voice User Interface” -- command based/limited vocabulary
+      Voice dialing
+      Call routing
+      Simple data entry
+    Dictation/Notes taking -- free form speech
+  </aside>
+</section>
+
 <!-- SLIDE 4 -->
+<section data-background-image="img/alexa-2.jpg" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    In case you don't already use personal assistant apps like siri, Speech recognition:
+    Speaker independent: regardless of the speaker
+    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
+
+    “Voice User Interface” -- command based/limited vocabulary
+      Voice dialing
+      Call routing
+      Simple data entry
+    Dictation/Notes taking -- free form speech
+  </aside>
+</section>
+
+<!-- SLIDE 5 -->
+<section data-background-image="img/google-home.webp" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    In case you don't already use personal assistant apps like siri, Speech recognition:
+    Speaker independent: regardless of the speaker
+    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
+
+    “Voice User Interface” -- command based/limited vocabulary
+      Voice dialing
+      Call routing
+      Simple data entry
+    Dictation/Notes taking -- free form speech
+  </aside>
+</section>
+
+<!-- SLIDE 6 -->
+<section data-background-image="img/voice-speakers.png" data-transition="slide" data-background-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+  </aside>
+</section>
+
+<!-- SLIDE 7 -->
+<section data-background-image="img/voice-users.png" data-transition="slide" data-background-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+  </aside>
+</section>
+
+<!-- SLIDE 8 -->
+<section data-background-image="img/voice-performance.png" data-transition="slide" data-background-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+  </aside>
+</section>
+
+<!-- SLIDE 9 -->
+<section data-background-image="img/voice-research.png" data-transition="slide" data-background-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+  </aside>
+</section>
+
+<!-- SLIDE 10 -->
+<section data-background-image="img/performance.png" data-transition="slide" data-background-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    This is how you assess it - Performance measured in terms of:
+    Accuracy: word error rate (WER) = (Substitutions + Deletions + Insertions)/Number words in reference speech
+    Speed: real time factor = ratio between how long it took to decode the speech and how long it actually was
+  </aside>
+</section>
+
+<!-- SLIDE 11 -->
 <section data-background-image="img/speechwave-1.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
@@ -254,7 +177,7 @@
   </aside>
 </section>
 
-<!-- SLIDE 5 -->
+<!-- SLIDE 12 -->
 <section data-background-image="img/speechwave-2.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
@@ -262,7 +185,7 @@
   </aside>
 </section>
 
-<!-- SLIDE 6 -->
+<!-- SLIDE 13 -->
 <section data-background-image="img/speechwave-3.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
@@ -271,7 +194,7 @@
   </aside>
 </section>
 
-<!-- SLIDE 7 -->
+<!-- SLIDE 14 -->
 <section data-background-image="img/speechwave-4.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
@@ -282,7 +205,7 @@
   </aside>
 </section>
 
-<!-- SLIDE 7' -->
+<!-- SLIDE 14' -->
 <section data-background-image="img/speechwave-5.png">
   <p>&nbsp;</p>
   <aside class="notes">
@@ -290,17 +213,7 @@
   </aside>
 </section>
 
-<!-- SLIDE 8 -->
-<section data-background-image="img/performance.png" data-transition="slide">
-  <p>&nbsp;</p>
-  <aside class="notes">
-    This is how you assess it - Performance measured in terms of:
-    Accuracy: word error rate (WER) = (Substitutions + Deletions + Insertions)/Number words in reference speech
-    Speed: real time factor = ratio between how long it took to decode the speech and how long it actually was
-  </aside>
-</section>
-
-<!-- SLIDE 3 -->
+<!-- SLIDE 15 -->
 <section data-background-image="img/longtimeago.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
@@ -311,7 +224,7 @@
 </section>
 
 
-<!-- SLIDE 10 -->
+<!-- SLIDE 16 -->
 <section data-background-image="img/mozilla.jpg" data-transition="fade">
   <i class="mozilla-logo"></i>
   <aside class="notes">
@@ -319,14 +232,14 @@
   </aside>
 </section>
 
-<!-- SLIDE 10-p2 -->
+<!-- SLIDE 16' -->
 <section data-background-image="img/firefox-os3.jpg" data-transition="fade">
   <aside class="notes">
     -- Mozilla’s mobile phone operating system built entirely using web technologies. Being a research project, the focus was more on exploring what is even possible in terms of speech recognition for the web, rather than have something production ready.
   </aside>
 </section>
 
-<!-- SLIDE 11 -->
+<!-- SLIDE 17 -->
 <section data-background-image="img/full-ink.jpg">
   <div class="name-text">DEMO</div>
   <div class="name-sub emphasize">github.com/mihai/talk.js</div>
@@ -339,7 +252,7 @@
   </aside>
 </section>
 
-<!-- SLIDE 12 -->
+<!-- SLIDE 18 -->
 <section data-background-image="img/full-ink.jpg" data-state="speech-end">
   <div class="name-text">Web Speech API Spec</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechSpec</div>
@@ -355,7 +268,7 @@
   </aside>
 </section>
 
-<!-- SLIDE 13 -->
+<!-- SLIDE 19 -->
 <section data-background-image="img/full-ink.jpg" data-state="speech-start">
   <div class="name-text">Web Speech API</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
@@ -378,7 +291,7 @@ if (!SpeechRecognition) {
   </aside>
 </section>
 
-<!-- SLIDE 14 -->
+<!-- SLIDE 20 -->
 <section data-background-image="img/full-ink.jpg">
   <div class="name-text">Speech Recognition Attributes</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
@@ -409,7 +322,7 @@ recognizer.maxAlternatives = 3;
   </aside>
 </section>
 
-<!-- SLIDE 15 -->
+<!-- SLIDE 21 -->
 <section data-background-image="img/full-ink.jpg">
   <div class="name-text">Speech Recognition Event Handlers</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
@@ -427,7 +340,7 @@ recognizer.onerror // When an error occurred
   </aside>
 </section>
 
-<!-- SLIDE 16 -->
+<!-- SLIDE 22 -->
 <section data-background-image="img/full-ink.jpg">
   <div class="name-text">Speech Recognition Control</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
@@ -444,7 +357,7 @@ recognizer.stop();
   </aside>
 </section>
 
-<!-- SLIDE 17 -->
+<!-- SLIDE 23 -->
 <section data-background-image="img/full-ink.jpg">
   <div class="name-text">Speech Recognition Result format</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
@@ -476,8 +389,19 @@ recognizer.stop();
   </aside>
 </section>
 
-<!-- SLIDE 18 -->
-<section data-background-image="img/full-ink.jpg" data-state="speech-continuous">
+<!-- SLIDE 24 -->
+<section data-background-image="img/full-ink.jpg">
+  <div class="name-text">Privacy</div>
+  <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
+  <i class="privacy hero-pic">&nbsp;</i>
+  <aside class="notes">
+    Chrome needs to ask the user for permission to use the microphone, in which case onstart only fires when and if the user allows permission.
+    Pages hosted on HTTPS do not need to ask repeatedly for permission, whereas HTTP hosted pages do.
+  </aside>
+</section>
+
+<!-- SLIDE 24 -->
+<!-- <section data-background-image="img/full-ink.jpg">
   <div class="name-text">DEMO</div>
   <div class="name-sub emphasize">Web Speech API</div>
 
@@ -490,9 +414,9 @@ recognizer.stop();
 
     You might be wondering can I use this now, or is it behind crazy browser flags that no user will know how to turn on to make use of your app’s speech recognition capabilities?
   </aside>
-</section>
+</section> -->
 
-<!-- SLIDE 19 -->
+<!-- SLIDE 25 -->
 <section data-background-image="img/full-ink.jpg" data-state="speech-end" data-transition="slide-in fade-out">
   <div class="name-text">Browser Support</div>
   <div class="name-sub emphasize">caniuse.com/#feat=speech-recognition</div>
@@ -504,10 +428,28 @@ recognizer.stop();
   </aside>
 </section>
 
-<!-- SLIDE 20 -->
-<section data-background-image="img/hudl-layout-main.png" data-transition="fade">
-  <h2>Thank You</h2>
-  <!-- <h4 class="name-sub">Questions?</h4> -->
+<!-- SLIDE 26 -->
+<section data-background-image="img/hudl-layout-main.png" data-transition="fade" data-state="voice-visualizer speech-start">
+  <h3><span class="voice-visualizer">
+    <svg preserveAspectRatio="none" id="visualizer-end" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <mask id="mask-end">
+          <g id="maskGroup"></g>
+        </mask>
+        <linearGradient id="gradient-end" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:rgba(250, 250, 250, 1.0);stop-opacity:1" />
+          <stop offset="20%" style="stop-color:rgba(215, 217, 221, 1.0);stop-opacity:1" />
+          <stop offset="90%" style="stop-color:rgba(255, 140, 0, 1.0);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:rgba(255, 99, 0, 1.0);stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-end)" mask="url(#mask-end)"></rect>
+    </svg>
+  </span></h3>
+  <div id="results">
+    <span id="final_span" class="final"></span>
+    <span id="interim_span" class="interim"></span>
+  </div>
   <div class="name">
     <div class="name-text">Mihai Cîrlănaru</div>
     <div class="name-sub">@MCirlanaru</div>
@@ -529,17 +471,66 @@ recognizer.stop();
 <script src="js/reveal.js"></script>
 
 <script>
+
+var paths = document.getElementsByTagName('path');
+var visualizer = document.getElementById('visualizer');
+var visualizerEnd = document.getElementById('visualizer-end');
+var mask1 = visualizer.getElementById('mask');
+var mask2 = visualizerEnd.getElementById('mask-end');
+var path;
+var NR_LINES = 40;
+
+var soundAllowedCallback = function (stream) {
+    //Audio stops listening in FF without // window.persistAudioStream = stream;
+    //https://bugzilla.mozilla.org/show_bug.cgi?id=965483
+    //https://support.mozilla.org/en-US/questions/984179
+    window.persistAudioStream = stream;
+    var audioContent = new AudioContext();
+    var audioStream = audioContent.createMediaStreamSource( stream );
+    var analyser = audioContent.createAnalyser();
+    audioStream.connect(analyser);
+    analyser.fftSize = 1024;
+
+    var frequencyArray = new Uint8Array(analyser.frequencyBinCount);
+    visualizer.setAttribute('viewBox', `0 0 ${NR_LINES} 255`);
+    visualizerEnd.setAttribute('viewBox', `0 0 ${NR_LINES} 255`);
+
+    //Through the frequencyArray has a length longer than 255, there seems to be no
+    //significant data after this point. Not worth visualizing.
+    for (var i = 0 ; i < NR_LINES; i++) {
+        path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        mask1.appendChild(path1);
+        mask2.appendChild(path2);
+    }
+    var doDraw = function () {
+        requestAnimationFrame(doDraw);
+        analyser.getByteFrequencyData(frequencyArray);
+        var adjustedLength;
+        for (var i = 0 ; i < NR_LINES; i++) {
+            adjustedLength = Math.floor(frequencyArray[i]) - (Math.floor(frequencyArray[i]) % 5);
+            paths[i].setAttribute('d', 'M '+ (i) +',255 l 0,-' + adjustedLength);
+        }
+
+    }
+    doDraw();
+}
+
+navigator.getUserMedia({ audio: true }, soundAllowedCallback, function(){});
+
 var two_line = /\n\n/g;
 var one_line = /\n/g;
+var thank_you = /thank\s+you/gi;
 function linebreak(s) {
   return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
 }
 var first_char = /\S/;
 function capitalize(s) {
-  return s.replace(first_char, function(m) { return m.toUpperCase(); });
+  return s.replace(first_char, function(m) {
+    return m.toUpperCase();
+  }).replace(thank_you, '<br><span class="thanks">thank you</span>');
 }
 
-var KEYWORDS = ['fox', 'practice', 'return', 'error', 'format', 'straight'];
 var final_transcript = '';
 var slide_transcript = '';
 var final_span = document.getElementById('final_span');
@@ -580,9 +571,11 @@ Reveal.initialize({
     // ENTER KEY
     13: function() {
       if (!listeningToSpeech) {
+        console.info('KEY SPEECH START');
         recognizer.start();
         listeningToSpeech = true;
       } else {
+        console.info('KEY SPEECH END');
         recognizer.stop();
         listeningToSpeech = false;
       }
@@ -591,7 +584,7 @@ Reveal.initialize({
     32: function() {
       recognizer.abort();
       resetSpeech();
-      console.log('RESET SPEECH RECOGNIZER');
+      console.warn('RESET SPEECH RECOGNIZER');
     },
     // UP KEY
     38: 'prev',
@@ -613,103 +606,70 @@ Reveal.initialize({
 });
 
 if (!isSpeakerNotes) {
-recognizer.onend = function(event) {
-  console.warn('SPEECH END', event);
-}
-
-recognizer.onresult = function(event) {
-  var foundKeyword = false;
-  for (var i = 0, len = KEYWORDS.length; i < len && !foundKeyword; i++) {
-    var keyword = KEYWORDS[i];
-    if (slide_transcript.toLowerCase().indexOf(keyword) !== -1) {
-      slide_transcript = '';
-      foundKeyword = true;
-      KEYWORDS.splice(i, 1);
-      Reveal.next();
-    }
+  recognizer.onend = function(event) {
+    console.warn('SPEECH END');
+    listeningToSpeech = false;
   }
 
-  var interim_transcript = '';
-  for (var i = event.resultIndex; i < event.results.length; ++i) {
-    if (event.results[i].isFinal) {
-      final_transcript += event.results[i][0].transcript;
-    } else {
-      interim_transcript += event.results[i][0].transcript;
-      slide_transcript += event.results[i][0].transcript;
+  recognizer.onresult = function(event) {
+    var interim_transcript = '';
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+        slide_transcript += event.results[i][0].transcript;
+      }
+
     }
+    final_transcript = capitalize(final_transcript);
+    final_span.innerHTML = linebreak(final_transcript);
+    interim_span.innerHTML = linebreak(interim_transcript);
 
-  }
-  final_transcript = capitalize(final_transcript);
-  final_span.innerHTML = linebreak(final_transcript);
-  interim_span.innerHTML = linebreak(interim_transcript);
+    console.group('SPEECH RESULT');
+    console.info('INTERIM:', interim_transcript);
+    console.info('FINAL:', final_transcript);
+    console.groupEnd();
+  };
 
-  console.log('SPEECH RESULT INTERIM:', interim_transcript);
-  console.log('SPEECH RESULT FINAL:', final_transcript);
-};
-
-recognizer.onerror = function(event) {
-  console.error('ERROR:', event);
-  if (event.error === 'network' || event.error === 'aborted') {
-    console.log('SPEECH RESTART');
-    recognizer.stop();
-    if (recognizerTimeout) {
-      clearTimeout(recognizerTimeout);
-      recognizerTimeout = null;
+  recognizer.onerror = function(event) {
+    console.error('ERROR:', event.error);
+    if (event.error === 'network' || event.error === 'aborted') {
+      console.info('SPEECH RESTART');
+      recognizer.stop();
+      if (recognizerTimeout) {
+        clearTimeout(recognizerTimeout);
+        recognizerTimeout = null;
+      }
+      recognizerTimeout = setTimeout(function(){
+        console.info('SPEECH STARTING...');
+        recognizer.start();
+        listeningToSpeech = true;
+      }, 500);
     }
-    recognizerTimeout = setTimeout(function(){
-      console.log('SPEECH STARTING...');
-      recognizer.start();
-      listeningToSpeech = true;
-    }, 500);
-  }
+  };
 
-  // Reveal.next();
-};
-}
+  Reveal.addEventListener( 'slidechanged', function( event ) {
+    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+    console.info('SLIDE CHANGED', event.indexh);
+  } );
 
-Reveal.addEventListener( 'slidechanged', function( event ) {
-  // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-  console.log('SLIDE CHANGED');
-  slide_transcript = '';
-  if (listeningToSpeech) {
-    recognizer.abort();
-    if (recognizerTimeout) {
-      clearTimeout(recognizerTimeout);
-      recognizerTimeout = null;
-    }
-    recognizerTimeout = setTimeout(function(){
-      recognizer.start();
-      console.log('SPEECH RESTART');
-    }, 500);
-  }
-} );
+  Reveal.addEventListener( 'speech-start', function(ev) {
+    // Start recognition
+    recognizer.start();
+    listeningToSpeech = true;
+    console.info('SPEECH START SLIDE')
+  }, false );
 
-if (!isSpeakerNotes) {
-Reveal.addEventListener( 'speech-start', function(ev) {
-  // Start recognition
-  recognizer.start();
-  listeningToSpeech = true;
-  console.log('SPEECH START SLIDE')
-}, false );
+  Reveal.addEventListener( 'intro', function(ev) {
+    var visualizer = document.getElementById('visualizer');
+    paths = document.getElementsByTagName('path');
+  }, false );
 
-Reveal.addEventListener( 'speech-continuous', function(ev) {
-  // Reset final transcript
-  // resetSpeech();
-  // recognizer.start();
-
-  final_transcript = '';
-  final_span.innerHTML = '';
-  interim_span.innerHTML = '';
-  console.log('SPEECH continuous SLIDE')
-}, false );
-
-
-Reveal.addEventListener( 'speech-end', function(ev) {
-  // Start recognition
-  recognizer.abort();
-  listeningToSpeech = false;
-  console.log('SPEECH STOP SLIDE')
-}, false );
+  Reveal.addEventListener( 'voice-visualizer', function(ev) {
+    var visualizer = document.getElementById('visualizer-end');
+    paths = visualizer.getElementsByTagName('path');
+  }, false );
 }
 </script>
   </body>

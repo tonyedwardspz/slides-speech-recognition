@@ -4,7 +4,7 @@
 Uses [reveal.js](https://github.com/hakimel/reveal.js) to generate the slides and enable features like running
 custom JavaScript in the talk.
 
-## setup
+## Setup
 
 1. Install dependencies
    ```sh
