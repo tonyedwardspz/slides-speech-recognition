@@ -532,7 +532,6 @@ function capitalize(s) {
 }
 
 var final_transcript = '';
-var slide_transcript = '';
 var final_span = document.getElementById('final_span');
 var interim_span = document.getElementById('interim_span');
 var listeningToSpeech = false;
@@ -543,7 +542,6 @@ var isSpeakerNotes = document.URL.indexOf('?receiver') !== -1;
 
 function resetSpeech() {
   final_transcript = '';
-  slide_transcript = '';
   listeningToSpeech = false;
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
@@ -609,6 +607,7 @@ if (!isSpeakerNotes) {
   recognizer.onend = function(event) {
     console.warn('SPEECH END');
     listeningToSpeech = false;
+    final_transcript += ' ';
   }
 
   recognizer.onresult = function(event) {
@@ -618,7 +617,6 @@ if (!isSpeakerNotes) {
         final_transcript += event.results[i][0].transcript;
       } else {
         interim_transcript += event.results[i][0].transcript;
-        slide_transcript += event.results[i][0].transcript;
       }
 
     }
