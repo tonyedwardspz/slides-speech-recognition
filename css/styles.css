@@ -129,10 +129,11 @@
   line-height: 1.2;
 }
 
-span.thanks {
+p.thanks {
   font-size: 2em;
   font-weight: bold;
   opacity: .7;
+  margin: 0;
 }
 
 .reveal h3.title-main {
