@@ -125,7 +125,7 @@
   text-align: left;
   height: 260px;
   width: 60%;
-  overflow: scroll;
+  overflow: hidden;
   margin: 0 auto;
   margin-right: 30%;
   line-height: 1.2;
