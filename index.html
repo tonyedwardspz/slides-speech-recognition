@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/night.css">
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="lib/css/atom-one-dark.css">
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/styles.css">
 
@@ -59,9 +59,11 @@
   </div>
 
   <aside class="notes">
-    Thanks for having me here, it’s amazing to be back home in front of such a big crowd of enthusiasts.
-
-    For the next half an hour I will be talking to you about a topic I am very passionate about, Speech Recognition. And most excitingly of all, about how to empower your web application with voice-triggered interactions.
+    Thanks for having me here, first time I'm attending Frontend Conf -- actually first time in Switzerland --
+    and I'm very excited about being in front of you all.
+    <br><br>
+    For the next half an hour I will be talking to you about a topic I am quite passionate about, Speech Recognition.
+    <b>WHY</b> it's a such a big deal these days, <b>HOW</b> it works, and <b>HOW</b> to use it on the web
   </aside>
 </section>
 
@@ -71,7 +73,9 @@
   <div class="name-sub">Software Development Lead</div>
   <i class="hudl-logo"></i>
   <aside class="notes">
-    First off, a bit about myself, my name is Mihai Cirlanaru, I am based in London, working on full-stack web for Hudl, a sports technology company that builds analysis tools for coaches and athletes at all levels to help them win.
+    First off, a bit about myself, my name is Mihai, almost did a PhD in NLP a few years back, but went to the
+    dark side (joined a startup) and now I'm a team lead based in Germany, working on full-stack web for Hudl,
+    a sports technology company that builds performance analysis tools for coaches and athletes.
   </aside>
 </section>
 
@@ -83,19 +87,29 @@
   </aside>
 </section> -->
 
+ <!-- SLIDE 3 Intro -->
+ <section data-background-image="img/title-slide-1.png" data-transition="slide">
+   <p>&nbsp;</p>
+   <aside class="notes">
+     Speech Recognigion has been around for decades (early 1950s) but because it is such a HARD problem (just think of
+     all the factors that play into it: accent, pronunciation, pitch, volume, and speed)
+     it was mainly targetting highly specialized domains:<br>
+     - speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune<br>
+     - command based/limited vocab: e.g. call routing, digit recognition<br>
+     <br>
+     But then, technology caught up and starting with Apple's Siri in 2011 a wave a voice-enabled devices/personal
+     assistants started to pick up.
+   </aside>
+ </section>
+
 <!-- SLIDE 3 -->
 <section data-background-image="img/siri.jpg" data-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
-    In case you don't already use personal assistant apps like siri, Speech recognition:
-    Speaker independent: regardless of the speaker
-    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
-
-    “Voice User Interface” -- command based/limited vocabulary
-      Voice dialing
-      Call routing
-      Simple data entry
-    Dictation/Notes taking -- free form speech
+    But then, technology caught up and starting with Apple's Siri in 2011 a wave a voice-enabled devices/personal
+    assistants started to pick up.<br><br>
+    While not perfect back then, Siri opened the door to a wide range of voice-enabled interactions, making
+    technology more intuitive and even fun. how many of you used Siri so far?
   </aside>
 </section>
 
@@ -103,15 +117,10 @@
 <section data-background-image="img/alexa-2.jpg" data-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
-    In case you don't already use personal assistant apps like siri, Speech recognition:
-    Speaker independent: regardless of the speaker
-    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
-
-    “Voice User Interface” -- command based/limited vocabulary
-      Voice dialing
-      Call routing
-      Simple data entry
-    Dictation/Notes taking -- free form speech
+    A few years later (2014), Amazon took the voice-enabled assistant to a whole new level, these black cylindrical
+    speakers with the glowing blue LED ring quickly became the staple of home automation enthusiasts and pretty much
+    kick off a whole new market of IoT devices that can be controlled with one's voice.<br>
+    How many of you used Alexa so far?
   </aside>
 </section>
 
@@ -119,15 +128,10 @@
 <section data-background-image="img/google-home.webp" data-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
-    In case you don't already use personal assistant apps like siri, Speech recognition:
-    Speaker independent: regardless of the speaker
-    Speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune
-
-    “Voice User Interface” -- command based/limited vocabulary
-      Voice dialing
-      Call routing
-      Simple data entry
-    Dictation/Notes taking -- free form speech
+    While Google did have voice input for search, it was only in 2016 that they created their own clever flower-vase
+    that was responsive to one's voice.<br>
+    How many of you used Google voice input?<br>
+    And as it turns out, more and more of these voice-enabled devices are coming up soon.
   </aside>
 </section>
 
@@ -135,6 +139,9 @@
 <section data-background-image="img/voice-speakers.png" data-transition="slide" data-background-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
+    And as it turns out, more and more of these voice-enabled devices are coming up soon, drawing a parallel to the
+    smartphone revolution, this might just be the Voice Speaker Revolution.<br>
+    And as we saw here on a smaller scale, there are actually a lot of people using these -- in the US alone
   </aside>
 </section>
 
@@ -142,6 +149,9 @@
 <section data-background-image="img/voice-users.png" data-transition="slide" data-background-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
+    And the data does back this up, in the US alone approx 55 million people use a voice enabled digital assistant,
+    with the trend is going upward.<br><br>
+    But how come this exploded now?
   </aside>
 </section>
 
@@ -149,23 +159,44 @@
 <section data-background-image="img/voice-performance.png" data-transition="slide" data-background-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
+    Well, speech recognition got very GOOD these days -- in terms of numbers (and I'll explain these in a bit)
+    Google managed to improve their own speech recognizer from a 23% error rate to 4.9% in a handful of years and
+    Baidu currently knocked that out of the park with a 3.7% error rate achieved by its Deep Speech 2 system.
   </aside>
 </section>
 
 <!-- SLIDE 9 -->
-<section data-background-image="img/voice-research.png" data-transition="slide" data-background-transition="slide">
+<section data-background-image="img/performance.png" data-transition="slide" data-background-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
+    If you are wondering what this error rate actually means: it is the sum of all errors the system produces over
+    the size of the reference speech. These errors can be Insertions, Substitutions and Deletions.
+    <br>
+    Then sure, you might say nice numbers and math, but what does that mean?
+    It turns out speech recognition systems are so good that they can even beat humans to it.
+    And there's research to prove it -- a group from Stanford proved that
   </aside>
 </section>
 
 <!-- SLIDE 10 -->
-<section data-background-image="img/performance.png" data-transition="slide" data-background-transition="slide">
+<section data-background-image="img/voice-research.png" data-transition="slide" data-background-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
-    This is how you assess it - Performance measured in terms of:
-    Accuracy: word error rate (WER) = (Substitutions + Deletions + Insertions)/Number words in reference speech
-    Speed: real time factor = ratio between how long it took to decode the speech and how long it actually was
+    A group from Stanford used the speech rec tech from Baidu (the 3.7% one from earlier) and tested it
+    vs people at transcribing speech -- and guess what it is better, 3x faster -- and if you check out the
+    research at that link you will also learn that it performs better in terms of correctness for mandarin.<br><br>
+    And if you used one of these devices you will not be surprised at all by these results --
+    I personally have no idea how the app to set reminders or timers looks like, I just use Alexa or Siri.
+    <br><br>
+    Now that we seen how big of deal it is let's see how it works
+  </aside>
+</section>
+
+<!-- SLIDE 11 Intro -->
+<section data-background-image="img/title-slide-2.png" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    Now that we seen how big of deal it is let's see how it works
   </aside>
 </section>
 
@@ -173,7 +204,8 @@
 <section data-background-image="img/speechwave-1.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
-    A continuous sound wave whose amplitude varies based on the sounds involved. The recognition process works as follows
+    What are voice produces is a continuous sound wave whose amplitude varies based on the sounds involved.<br>
+    The recognition process works as follows
   </aside>
 </section>
 
@@ -189,8 +221,8 @@
 <section data-background-image="img/speechwave-3.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
-    Each utterance is split in frames
-    For each frame a feature vector is computed -- a set of numbers representing distinguishable properties of a sound
+    Each utterance is split in frames and for each frame a feature vector is computed -- a set of numbers representing
+    distinguishable properties of a sound
   </aside>
 </section>
 
@@ -198,10 +230,11 @@
 <section data-background-image="img/speechwave-4.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
-    Using a series of models, the search space for a match is significantly reduced and thus recognition is made possible in a finite amount of time:
-    - acoustic model contains acoustic properties for each distinct unit of sound (senone)
-    - phonetic dictionary contains a mapping from words to phones
-    - language model is used to restrict word search
+    Using a series of models, the search space for a match is significantly reduced and thus recognition is made
+    possible in a finite amount of time:<br>
+    - <b>acoustic model</b> contains acoustic properties for each distinct unit of sound (senone)
+    - <b>phonetic dictionary</b> provides information on how to pronounce each word
+    - <b>language model</b> is used to restrict word search
   </aside>
 </section>
 
@@ -209,7 +242,18 @@
 <section data-background-image="img/speechwave-5.png">
   <p>&nbsp;</p>
   <aside class="notes">
-    And for the speech represented here the decoding would be "Hello World" -- just in case you wondered how speech recognizers are assessed
+    And for the speech represented here the decoding would be "Hello World" -- just in case you wondered
+    how speech recognizers are assessed<br><br>
+    Now that we got this out of the way, let's get to the fun part
+  </aside>
+</section>
+
+<!-- SLIDE 15 Intro -->
+<section data-background-image="img/title-slide-3.png" data-transition="slide">
+  <p>&nbsp;</p>
+  <aside class="notes">
+    Now that we got this out of the way, let's get to the fun part. And as every good talk should have a good story
+    I'm going to tell you one about my experience with Speech Recognition on the Web.
   </aside>
 </section>
 
@@ -217,9 +261,9 @@
 <section data-background-image="img/longtimeago.png" data-transition="fade">
   <p>&nbsp;</p>
   <aside class="notes">
-    I started playing around with speech recognition about 4 years ago when I was studying about it for my Masters degree and was quite intrigued by how hard is the problem it solves -- all the various factors like accent, pronunciation, articulation, roughness, nasality, pitch, volume, and speed influence it.
-
-    In practice, speech looks a lot like this:
+    I started playing around with speech recognition a few years back when I was studying about it for
+    my Masters degree and got this great opportunity to put in practice what I learned about speech recognition
+    within the Research Team at this small little tech company in the Valley
   </aside>
 </section>
 
@@ -228,14 +272,16 @@
 <section data-background-image="img/mozilla.jpg" data-transition="fade">
   <i class="mozilla-logo"></i>
   <aside class="notes">
-    Towards the end of my studies, I had the great opportunity to put in practice what I learned about speech recognition within the Research Team at Mozilla, to build a speech recognition engine for Firefox OS
+    Within the Research Team at Mozilla, to build a speech recognition engine for the now defunct Firefox OS
   </aside>
 </section>
 
 <!-- SLIDE 16' -->
 <section data-background-image="img/firefox-os3.jpg" data-transition="fade">
   <aside class="notes">
-    -- Mozilla’s mobile phone operating system built entirely using web technologies. Being a research project, the focus was more on exploring what is even possible in terms of speech recognition for the web, rather than have something production ready.
+    Mozilla’s mobile phone operating system built entirely using web technologies. RIP it was a great<br><br>
+    Being a research project, the focus was more on exploring what is even possible in terms of speech recognition
+    for the web, rather than have something production ready.
   </aside>
 </section>
 
@@ -246,30 +292,34 @@
   <i class="github-repo hero-pic">&nbsp;</i>
 
   <aside class="notes">
-    During my time there, I have built a pure JavaScript speech recognizer that performs the decoding process on the client, without the need of any cloud-based backend to send the speech to for decoding. And here’s a demo for it:
-
-    If you are interested more on how this was built, and how it works behind the scenes, feel free to grab me after the talk.
+    During my time there, I have built a pure JavaScript speech recognizer that performs the decoding process
+    on the client, without the need of any cloud-based backend to send the speech to for decoding.<br>
+    And I'm going to show it to you -- to make it even more exciting I'm going to kill the network on this --
+    don't try this in live demos
+    <br><br>
+    If you are interested more on how this was built, and how it works behind the scenes,
+    feel free to grab me after the talk.
   </aside>
 </section>
 
 <!-- SLIDE 18 -->
-<section data-background-image="img/full-ink.jpg" data-state="speech-end">
+<section data-background-image="img/full-ink.jpg">
   <div class="name-text">Web Speech API Spec</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechSpec</div>
   <i class="spec hero-pic">&nbsp;</i>
   <aside class="notes">
-    Little did I know when researching this at Mozilla, at around the same time, a team from Google were writing a spec for Web Speech APIs.
-
-    defining JavaScript APIs that would allow developers to incorporate speech recognition into their web pages. About a year later, with Chrome v25, Web Speech APIs were out.
-
+    Little did I know when researching this at Mozilla, around the same time, a team from Google were writing
+    a spec for Web Speech APIs -- defining JavaScript APIs that would allow developers to incorporate speech
+    recognition into their web pages. About a year later, with Chrome v25, Web Speech APIs were out.
+    <br>
     Whereas Chrome had speech input capabilities with x-webkit-speech attribute (now deprecated) to input fields since v11.
-
+    <br><br>
     Ok, so let’s see how these APIs look like in practice
   </aside>
 </section>
 
 <!-- SLIDE 19 -->
-<section data-background-image="img/full-ink.jpg" data-state="speech-start">
+<section data-background-image="img/full-ink.jpg">
   <div class="name-text">Web Speech API</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
 
@@ -286,8 +336,8 @@ if (!SpeechRecognition) {
 </code>
 </pre>
   <aside class="notes">
-    [FIREFOX]
-    You first need to instantiate a Speech Recognition object, and since the APIs are still experimental they do need the browser prefix for Chrome (not for Firefox though)
+    You first need to instantiate a Speech Recognition object, and since the APIs are still experimental they
+    do need the browser prefix for Chrome (not for Firefox though).
   </aside>
 </section>
 
@@ -317,8 +367,7 @@ recognizer.maxAlternatives = 3;
 </code>
 </pre>
   <aside class="notes">
-    [RETURN]
-    Some of the most relevant configuration attributes of the speech recognition object are
+    Some of the most relevant configuration attributes of the speech recognition instance.
   </aside>
 </section>
 
@@ -335,8 +384,9 @@ recognizer.onerror // When an error occurred
 </code>
 </pre>
   <aside class="notes">
-    [ERROR]
-    There are a few event handlers provided for the Speech Recognition interface, and I would recommend you check the full API at http://bit.ly/WebSpeechAPI, however the minimum needed to get you started are: onresult, onnomatch, onerror
+    There are a few event handlers provided for the Speech Recognition interface, and I would recommend you check
+    the full API at http://bit.ly/WebSpeechAPI, however the minimum needed to get you started are:<br>
+    onresult, onnomatch, onerror
   </aside>
 </section>
 
@@ -345,15 +395,15 @@ recognizer.onerror // When an error occurred
   <div class="name-text">Speech Recognition Control</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
 <pre>
-<code data-trim data-noescape>
+<code data-trim data-noescape class="js">
 recognizer.start();
+recognizer.abort();
 recognizer.stop();
 </code>
 </pre>
   <aside class="notes">
-    [FORMAT]
-    In terms of controlling the recognizer we have a pretty self-explanatory API: start and stop.
-    And before we wrap things up, I want to show you how the Speech Recognition Result format looks like.
+    In terms of controlling the recognizer we have a pretty self-explanatory API: start and stop.<br>
+    And one last piece to the puzzle, this is how a Speech Recognition onResult event format looks like.
   </aside>
 </section>
 
@@ -362,30 +412,31 @@ recognizer.stop();
   <div class="name-text">Speech Recognition Result format</div>
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
 <pre>
-<code data-trim data-noescape>
+<code data-trim data-noescape class="js">
+// results[i][0].transcript -- top confidence transcription for result i
 {
-  isFinal: true,
-  resultIndex: 3,
-  results: [
-    [
-      { transcript: "hello" }
+  results: [ // SpeechRecognitionResultList
+    [ // SpeechRecognitionResult
+      { // SpeechRecognitionAlternative
+        transcript: "hello",
+        confidence: 0.8999,
+        isFinal: false
+      },
+      { // SpeechRecognitionAlternative
+        transcript: "world",
+        confidence: 0.4792,
+        isFinal: false
+      }
     ],
-    [
-      { transcript: "world"},
-      { transcript: "word"},
-      …
-    ],
-    …
   ]
   …
 }
 </code>
 </pre>
   <aside class="notes">
-    [STRAIGHT]
-    SpeechRecognitionResult array and each result has multiple alternatives results[0][0].transcript to get the first result with highest probability
+    SpeechRecognitionResultList -- each result has multiple alternatives results[0][0].transcript to get the
+    first result with highest probability<br>
     isFinal -- this result is not an interim result and thus it will not change
-    This seems quite straight forward, did anyone notice something?
   </aside>
 </section>
 
@@ -395,36 +446,25 @@ recognizer.stop();
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
   <i class="privacy hero-pic">&nbsp;</i>
   <aside class="notes">
-    Chrome needs to ask the user for permission to use the microphone, in which case onstart only fires when and if the user allows permission.
-    Pages hosted on HTTPS do not need to ask repeatedly for permission, whereas HTTP hosted pages do.
+    In terms of privacy, Chrome needs to ask the user for permission to use the microphone, in which case onstart only
+    fires when and if the user allows permission.<br>
+    Pages hosted on HTTPS do not need to ask repeatedly for permission, whereas HTTP hosted pages do.<br>
+    And this brings us to the last point about the WebSpeech API
   </aside>
 </section>
 
-<!-- SLIDE 24 -->
-<!-- <section data-background-image="img/full-ink.jpg">
-  <div class="name-text">DEMO</div>
-  <div class="name-sub emphasize">Web Speech API</div>
-
-  <div id="results">
-    <span id="final_span" class="final"></span>
-    <span id="interim_span" class="interim"></span>
-  </div>
-  <aside class="notes">
-    For the past few slides I didn’t actually click anything to switch between them [PAUSE] I was basically using Speech Recognition to talk about Speech Recognition (navigate through the slides), how meta is that?
-
-    You might be wondering can I use this now, or is it behind crazy browser flags that no user will know how to turn on to make use of your app’s speech recognition capabilities?
-  </aside>
-</section> -->
-
 <!-- SLIDE 25 -->
-<section data-background-image="img/full-ink.jpg" data-state="speech-end" data-transition="slide-in fade-out">
+<section data-background-image="img/full-ink.jpg" data-transition="slide-in fade-out">
   <div class="name-text">Browser Support</div>
   <div class="name-sub emphasize">caniuse.com/#feat=speech-recognition</div>
   <i class="browser-support hero-pic">&nbsp;</i>
   <aside class="notes">
-    As you can see support is not that great, it’s only Chrome and Opera that support it out of the box, whereas Firefox needs the webspeech recognition flag set. As I understand Microsoft is currently working on it.
-
-    This might sound unfortunate, but as we all know, it takes quite a bit of time for a web API to be part of the official spec and all browsers to support it…
+    As you can see support is not that great, it’s only Chrome and Opera that support it out of the box,
+    whereas Firefox needs the webspeech recognition flag set. Microsoft is currently working on it for Edge.
+    <br><br>
+    This image might look grim, but hey the global browser usage percentage is 60% and FF supports it behind a config flag
+    and this shouldn't discourage you from experimenting with new ways of improving UX using voice in your web apps.
+    And on that note,
   </aside>
 </section>
 
@@ -460,7 +500,8 @@ recognizer.stop();
     </div>
   </div>
   <aside class="notes">
-    And on that note, thank you very much for listening, hope my talk inspired you to build some exciting new features in your web applications. If you have any questions, feel free to ping me on twitter, the JSConf slack, and in person.
+    Just imagine, how cool would it be to have live transcription of your talk using speech recognition, on the web
+    how crazy is that? Thank you
   </aside>
 </section>
 
@@ -520,7 +561,7 @@ navigator.getUserMedia({ audio: true }, soundAllowedCallback, function(){});
 
 var two_line = /\n\n/g;
 var one_line = /\n/g;
-var thank_you = /thank\s+you/gi;
+var thank_you = /\s+thank\s+you/gi;
 function linebreak(s) {
   return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
 }
@@ -528,11 +569,10 @@ var first_char = /\S/;
 function capitalize(s) {
   return s.replace(first_char, function(m) {
     return m.toUpperCase();
-  }).replace(thank_you, '<br><span class="thanks">thank you</span>');
+  }).replace(thank_you, '<p class="thanks">thank you</p>');
 }
 
 var final_transcript = '';
-var slide_transcript = '';
 var final_span = document.getElementById('final_span');
 var interim_span = document.getElementById('interim_span');
 var listeningToSpeech = false;
@@ -543,7 +583,6 @@ var isSpeakerNotes = document.URL.indexOf('?receiver') !== -1;
 
 function resetSpeech() {
   final_transcript = '';
-  slide_transcript = '';
   listeningToSpeech = false;
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
@@ -567,6 +606,7 @@ resetSpeech();
 Reveal.initialize({
   history: true,
   controls: false,
+  viewDistance: 5,
   keyboard: {
     // ENTER KEY
     13: function() {
@@ -609,6 +649,7 @@ if (!isSpeakerNotes) {
   recognizer.onend = function(event) {
     console.warn('SPEECH END');
     listeningToSpeech = false;
+    final_transcript += ' ';
   }
 
   recognizer.onresult = function(event) {
@@ -618,9 +659,7 @@ if (!isSpeakerNotes) {
         final_transcript += event.results[i][0].transcript;
       } else {
         interim_transcript += event.results[i][0].transcript;
-        slide_transcript += event.results[i][0].transcript;
       }
-
     }
     final_transcript = capitalize(final_transcript);
     final_span.innerHTML = linebreak(final_transcript);
