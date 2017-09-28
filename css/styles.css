@@ -103,8 +103,18 @@
   color: #ff6500 !important;
 }
 
+.reveal .name {
+  text-align: left;
+  color: #58595b;
+  margin-left: 2rem;
+}
+
+.reveal .name-text.name-text--final-slide {
+  margin-top: 0;
+}
+
 .reveal .name-text {
-  margin-top: 100px;
+  margin-top: 7rem;
   font-size: 1em;
 }
 
@@ -114,20 +124,20 @@
 }
 
 .final {
-  color: white;
+  color: #dd0000;
   padding-right: 3px;
 }
 .interim {
-  opacity: .55;
+  color: #58595b;
+  opacity: .85;
+  font-style: italic !important;
 }
 #results {
   font-size: .75em;
   text-align: left;
-  height: 260px;
-  width: 60%;
+  height: 225px;
   overflow: hidden;
-  margin: 0 auto;
-  margin-right: 30%;
+  margin: 0 2rem;
   line-height: 1.2;
 }
 
@@ -153,6 +163,10 @@ p.thanks {
 }
 
 .voice-visualizer svg {
-  width: 22rem;
+  width: 34rem;
   height: 8.5rem;
+}
+
+.reveal .final-slide-header {
+  margin-top: -10rem;
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Speech Recognition on the Web - Mihai Cîrlănaru</title>
+    <title>Empowering Web Applications with Speech Recognition - Mihai Cîrlănaru</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/night.css">
@@ -27,39 +27,30 @@
       <div class="slides">
 
 <!-- SLIDE 1 -->
-<section data-background-image="img/full-ink.jpg" data-transition="slide" data-state="intro">
-  <h2>Speech Recognition</h2>
-  <h3 class="title-main">
-    <span class="voice-visualizer">
+<section data-background-image="img/topconf-first-slide.png" data-transition="slide" data-state="intro">
+  <div class="name">
+    <div class="voice-visualizer">
       <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
           <mask id="mask">
             <g id="maskGroup"></g>
           </mask>
           <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:rgba(250, 250, 250, 1.0);stop-opacity:1" />
-            <stop offset="20%" style="stop-color:rgba(215, 217, 221, 1.0);stop-opacity:1" />
-            <stop offset="90%" style="stop-color:rgba(100, 101, 102, 1.0);stop-opacity:1" />
-            <stop offset="100%" style="stop-color:rgba(56, 67, 79, 1.0);stop-opacity:1" />
+            <stop offset="0%" style="stop-color:rgba(88, 89, 91, 1.0);stop-opacity:1" />
+            <stop offset="20%" style="stop-color:rgba(221, 0, 0, 1.0);stop-opacity:1" />
+            <stop offset="90%" style="stop-color:rgba(254, 42, 41, 1.0);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgba(254, 208, 49, 1.0);stop-opacity:1" />
           </linearGradient>
         </defs>
         <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
       </svg>
-    </span>
-    on the <span class="emphasize title-main__em">Web</span>
-  </h3>
-  <div class="name">
+    </div>
     <div class="name-text">Mihai Cîrlănaru</div>
     <div class="name-sub">@MCirlanaru</div>
   </div>
-  <div class="main">
-    <div class="main-container">
-      <i class="conf-logo"></i>
-    </div>
-  </div>
 
   <aside class="notes">
-    Thanks for having me here, first time I'm attending Frontend Conf -- actually first time in Switzerland --
+    Thanks for having me here, first time I'm attending Topconf -- actually first time in Duesseldorf --
     and I'm very excited about being in front of you all.
     <br><br>
     For the next half an hour I will be talking to you about a topic I am quite passionate about, Speech Recognition.
@@ -73,9 +64,9 @@
   <div class="name-sub">Software Development Lead</div>
   <i class="hudl-logo"></i>
   <aside class="notes">
-    First off, a bit about myself, my name is Mihai, almost did a PhD in NLP a few years back, but went to the
-    dark side (joined a startup) and now I'm a team lead based in Germany, working on full-stack web for Hudl,
-    a sports technology company that builds performance analysis tools for coaches and athletes.
+    First off, a bit about myself, my name is Mihai, almost did a PhD in NLP a few years back, but decided that can wait
+    and moved to London to join a startup… fast forward a few years and now I'm a team lead based in Germany, working
+    on full-stack web for Hudl, a sports technology company that builds performance analysis tools for coaches and athletes.
   </aside>
 </section>
 
@@ -150,7 +141,7 @@
   <p>&nbsp;</p>
   <aside class="notes">
     <i>In the US alone</i> approx 55 million people use a voice enabled digital assistant,
-    with the trend is going upward.<br><br>
+    with an upward trend for the coming years.<br><br>
     But how come this exploded now?
   </aside>
 </section>
@@ -160,7 +151,7 @@
   <p>&nbsp;</p>
   <aside class="notes">
     Well, speech recognition got very GOOD these days -- in terms of numbers (and I'll explain these in a bit)
-    Google managed to improve their own speech recognizer's error rate from a 23% to 4.9% in a handful of years and
+    Google managed to improve their own speech recognizer's error rate from 23% to 4.9% in a handful of years and
     Baidu has currently knocked that out of the park with a 3.7% error rate achieved by its Deep Speech 2 system.
   </aside>
 </section>
@@ -174,7 +165,7 @@
     <br><br>
     Then sure, you might say nice numbers and math, but what does that mean?
     It turns out speech recognition systems are so good that they can even beat humans to it.
-    And there's research to prove it -- a group from Stanford proved that
+    And there's research to prove it
   </aside>
 </section>
 
@@ -182,13 +173,13 @@
 <section data-background-image="img/voice-research.png" data-transition="slide" data-background-transition="slide">
   <p>&nbsp;</p>
   <aside class="notes">
-    A group from Stanford used the speech rec tech from Baidu (the 3.7% one from earlier) and tested it
+    <i>And there's research to prove it</i> a group from Stanford used the speech rec tech from Baidu (the 3.7% one from earlier) and tested it
     vs people at transcribing speech -- and guess what it is better, 3x faster -- and if you check out the
     research at that link you will also learn that it performs better in terms of correctness for mandarin.<br><br>
     And if you used one of these devices you will not be surprised at all by these results --
     I personally have no idea how the app to set reminders or timers looks like, I just use Alexa or Siri.
     <br><br>
-    Now that we've seen how big of deal it is let's see how it works
+    <i>Now that we've seen how big of deal it is let's see how it works</i>
   </aside>
 </section>
 
@@ -232,8 +223,8 @@
   <aside class="notes">
     Using a series of models, the search space for a match is significantly reduced and thus recognition is made
     possible in a finite amount of time:<br>
-    - <b>acoustic model</b> contains acoustic properties for each distinct unit of sound (senone)
-    - <b>phonetic dictionary</b> provides information on how to pronounce each word
+    - <b>acoustic model</b> contains acoustic properties for each distinct unit of sound (senone)<br>
+    - <b>phonetic dictionary</b> provides information on how to pronounce each word<br>
     - <b>language model</b> is used to restrict word search
   </aside>
 </section>
@@ -242,8 +233,7 @@
 <section data-background-image="img/speechwave-5.png">
   <p>&nbsp;</p>
   <aside class="notes">
-    And for the speech represented here the decoding would be "Hello World" -- just in case you wondered
-    how speech recognizers are assessed<br><br>
+    And for the speech represented here the decoding would be "Hello World"<br><br>
     Now that we got this out of the way, let's get to the fun part
   </aside>
 </section>
@@ -253,7 +243,7 @@
   <p>&nbsp;</p>
   <aside class="notes">
     <i>Now that we got this out of the way, let's get to the fun part.</i>
-    And as every good talk should have a good story I'm going to tell you one about my experience with
+    As every good talk should have a good story I'm going to tell you one about my experience with
     Speech Recognition on the Web.
   </aside>
 </section>
@@ -263,8 +253,8 @@
   <p>&nbsp;</p>
   <aside class="notes">
     I started playing around with speech recognition a few years back when I was studying about it for
-    my Masters degree and got this great opportunity to put in practice what I learned about speech recognition
-    within the Research Team at this small little tech company in the Valley
+    my Masters degree and got this great opportunity to put in practice what I learned
+    within the Research Team at this small little tech company in Silicon Valley
   </aside>
 </section>
 
@@ -273,14 +263,14 @@
 <section data-background-image="img/mozilla.jpg" data-transition="fade">
   <i class="mozilla-logo"></i>
   <aside class="notes">
-    Within the Research Team at Mozilla, to build a speech recognition engine for the now defunct Firefox OS
+    <i>Within the Research Team at Mozilla</i> to build a speech recognition engine for the now defunct Firefox OS
   </aside>
 </section>
 
 <!-- SLIDE 16' -->
 <section data-background-image="img/firefox-os3.jpg" data-transition="fade">
   <aside class="notes">
-    Mozilla’s mobile phone operating system built entirely using web technologies. RIP it was a great<br><br>
+    Mozilla’s mobile phone operating system built entirely using web technologies. RIP it was a great project<br><br>
     Being a research project, the focus was more on exploring what is even possible in terms of speech recognition
     for the web, rather than have something production ready.
   </aside>
@@ -299,7 +289,8 @@
     don't try this in live demos
     <br><br>
     If you are interested more on how this was built, and how it works behind the scenes,
-    feel free to grab me after the talk.
+    feel free to grab me after the talk.<br><br>
+    <i>Little did I know, around the same time, a team from Google were writing a spec for Web Speech APIs</i>
   </aside>
 </section>
 
@@ -434,9 +425,10 @@ recognizer.stop();
 </code>
 </pre>
   <aside class="notes">
-    SpeechRecognitionResultList -- each result has multiple alternatives results[0][0].transcript to get the
+    SpeechRecognitionResultList -- each result has multiple alternatives, results[0][0].transcript to get the
     first result with highest probability<br>
-    isFinal -- this result is not an interim result and thus it will not change
+    isFinal -- this result is not an interim result and thus it will not change<br><br>
+    One big barrier for users to use voice-enabled devices is the concern around privacy.
   </aside>
 </section>
 
@@ -446,8 +438,9 @@ recognizer.stop();
   <div class="name-sub emphasize">bit.ly/WebSpeechAPI</div>
   <i class="privacy hero-pic">&nbsp;</i>
   <aside class="notes">
-    In terms of privacy, Chrome needs to ask the user for permission to use the microphone, in which case onstart only
-    fires when and if the user allows permission.<br>
+    <i>One big barrier for users to use voice-enabled devices is the concern around privacy.</i>
+    Chrome asks the user for permission to use the microphone, in which case onstart only
+    fires when and if the user allows permission.<br><br>
     Pages hosted on HTTPS do not need to ask repeatedly for permission, whereas HTTP hosted pages do.<br>
     And this brings us to the last point about the WebSpeech API
   </aside>
@@ -469,18 +462,18 @@ recognizer.stop();
 </section>
 
 <!-- SLIDE 26 -->
-<section data-background-image="img/hudl-layout-main.png" data-transition="fade" data-state="voice-visualizer speech-start">
-  <h3><span class="voice-visualizer">
+<section data-background-image="img/topconf-bg.png" data-transition="fade" data-state="voice-visualizer speech-start">
+  <h3 class="final-slide-header"><span class="voice-visualizer">
     <svg preserveAspectRatio="none" id="visualizer-end" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <mask id="mask-end">
           <g id="maskGroup"></g>
         </mask>
         <linearGradient id="gradient-end" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:rgba(250, 250, 250, 1.0);stop-opacity:1" />
-          <stop offset="20%" style="stop-color:rgba(215, 217, 221, 1.0);stop-opacity:1" />
-          <stop offset="90%" style="stop-color:rgba(255, 140, 0, 1.0);stop-opacity:1" />
-          <stop offset="100%" style="stop-color:rgba(255, 99, 0, 1.0);stop-opacity:1" />
+          <stop offset="0%" style="stop-color:rgba(88, 89, 91, 1.0);stop-opacity:1" />
+          <stop offset="20%" style="stop-color:rgba(221, 0, 0, 1.0);stop-opacity:1" />
+          <stop offset="90%" style="stop-color:rgba(254, 42, 41, 1.0);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:rgba(254, 208, 49, 1.0);stop-opacity:1" />
         </linearGradient>
       </defs>
       <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-end)" mask="url(#mask-end)"></rect>
@@ -491,17 +484,14 @@ recognizer.stop();
     <span id="interim_span" class="interim"></span>
   </div>
   <div class="name">
-    <div class="name-text">Mihai Cîrlănaru</div>
+    <div class="name-text name-text--final-slide">Mihai Cîrlănaru</div>
     <div class="name-sub">@MCirlanaru</div>
-  </div>
-  <div class="main">
-    <div class="main-container">
-      <i class="conf-logo-secondary"></i>
-    </div>
   </div>
   <aside class="notes">
     Just imagine, how cool would it be to have live transcription of your talk using speech recognition, on the web
     how crazy is that? Thank you
+    <br><br>
+    and in case you were wondering, this is for real
   </aside>
 </section>
 
