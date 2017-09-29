@@ -623,8 +623,18 @@ Reveal.initialize({
     // SPACE KEY
     32: function() {
       recognizer.abort();
-      resetSpeech();
+      final_transcript = '';
+      listeningToSpeech = false;
+      final_span.innerHTML = '';
+      interim_span.innerHTML = '';
+
       console.warn('RESET SPEECH RECOGNIZER');
+
+      recognizerTimeout = setTimeout(function(){
+        console.info('SPEECH STARTING...');
+        recognizer.start();
+        listeningToSpeech = true;
+      }, 500);
     },
     // UP KEY
     38: 'prev',
