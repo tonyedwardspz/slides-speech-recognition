@@ -16,6 +16,10 @@
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
+.reveal h2 {
+  font-size: 1.5em;
+}
+
 .reveal .main {
   width: 200%;
   height: 500px;
@@ -35,8 +39,8 @@
 .conf-logo-secondary {
   display: block;
   width: 100%;
-  height: 10%;
-  background: url("../img/fec-logo.svg") no-repeat 50%;
+  height: 22%;
+  background: url("../img/halfstack-logo.svg") no-repeat 50%;
   background-size: contain;
   position: absolute;
 }
@@ -46,7 +50,7 @@
 }
 
 .conf-logo-secondary {
-  top: 20%;
+  top: 15%;
 }
 
 .hudl-logo {
@@ -129,7 +133,6 @@
   margin: 0 auto;
   margin-right: 30%;
   line-height: 1.2;
-  width: 85%;
 }
 
 p.thanks {
@@ -144,7 +147,7 @@ p.thanks {
   font-size: 1.25em;
 }
 .reveal span.title-main__em {
-  font-size: 2.11em;
+  font-size: 1.5em;
 }
 
 .voice-visualizer path{
