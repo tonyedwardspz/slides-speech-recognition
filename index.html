@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Speech Recognition on the Web - Mihai Cîrlănaru</title>
+    <title>Empowering Web Applications with Speech Recognition - Mihai Cîrlănaru</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/night.css">
@@ -28,7 +28,7 @@
 
 <!-- SLIDE 1 -->
 <section data-background-image="img/full-ink.jpg" data-transition="slide" data-state="intro">
-  <h2>Speech Recognition</h2>
+  <h2>Empowering Web Applications with</h2>
   <h3 class="title-main">
     <span class="voice-visualizer">
       <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -46,7 +46,7 @@
         <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
       </svg>
     </span>
-    on the <span class="emphasize title-main__em">Web</span>
+    <span class="emphasize title-main__em">Speech Recognition</span>
   </h3>
   <div class="name">
     <div class="name-text">Mihai Cîrlănaru</div>
@@ -59,8 +59,8 @@
   </div>
 
   <aside class="notes">
-    Thanks for having me here, first time I'm attending Frontend Conf -- actually first time in Switzerland --
-    and I'm very excited about being in front of you all.
+    Thanks for having me here, HalfStack is one of those hidden gems of web development conferences,
+    I'm very excited about being in front of you today.
     <br><br>
     For the next half an hour I will be talking to you about a topic I am quite passionate about, Speech Recognition.
     <b>WHY</b> it's a such a big deal these days, <b>HOW</b> it works, and <b>HOW</b> to use it on the web
@@ -91,7 +91,7 @@
  <section data-background-image="img/title-slide-1.png" data-transition="slide">
    <p>&nbsp;</p>
    <aside class="notes">
-     Speech Recognigion has been around for decades (early 1950s) but because it is such a HARD problem (just think of
+     Speech Recognigion has been around for decades (early 1950s) but because it tackles such a HARD problem (just think of
      all the factors that play into it: accent, pronunciation, pitch, volume, and speed) it was mainly targetting
      highly specialized domains:<br>
      &nbsp;&nbsp;- speaker dependent: involves a training step where a user is asked to read some sentences -> fine tune<br>
@@ -102,7 +102,7 @@
  </section>
 
 <!-- SLIDE 3 -->
-<section data-background-image="img/siri.jpg" data-transition="slide">
+<section data-background-image="img/siri.jpg" data-transition="fade-out">
   <p>&nbsp;</p>
   <aside class="notes">
     <i>But then, technology caught up and starting with Apple's Siri in 2011 a wave a voice-enabled devices/personal
@@ -114,18 +114,18 @@
 </section>
 
 <!-- SLIDE 4 -->
-<section data-background-image="img/alexa-2.jpg" data-transition="slide">
+<section data-background-image="img/alexa-2.jpg" data-transition="fade-out">
   <p>&nbsp;</p>
   <aside class="notes">
     A few years later (2014), Amazon took the voice-enabled assistant to a whole new level, these black cylindrical
     speakers with the glowing blue LED ring quickly became the staple of home automation and pretty much
-    kick off a whole new market of IoT devices that can be controlled with one's voice.<br><br>
+    kicked off a whole new market of IoT devices that can be controlled with one's voice.<br><br>
     How many of you used Alexa so far?
   </aside>
 </section>
 
 <!-- SLIDE 5 -->
-<section data-background-image="img/google-home.webp" data-transition="slide">
+<section data-background-image="img/google-home.webp" data-transition="fade-out">
   <p>&nbsp;</p>
   <aside class="notes">
     While Google did have voice input for search, it was only in 2016 that they created their own clever home decoration
@@ -136,7 +136,7 @@
 </section>
 
 <!-- SLIDE 6 -->
-<section data-background-image="img/voice-speakers.png" data-transition="slide" data-background-transition="slide">
+<section data-background-image="img/voice-speakers.png" data-transition="fade-out">
   <p>&nbsp;</p>
   <aside class="notes">
     <i>And as it turns out, more and more of these voice-enabled devices are coming up soon</i><br>
@@ -146,27 +146,27 @@
 </section>
 
 <!-- SLIDE 7 -->
-<section data-background-image="img/voice-users.png" data-transition="slide" data-background-transition="slide">
+<section data-background-image="img/voice-users.png" data-transition="fade-out">
   <p>&nbsp;</p>
   <aside class="notes">
     <i>In the US alone</i> approx 55 million people use a voice enabled digital assistant,
-    with the trend is going upward.<br><br>
+    with the trend going upward.<br><br>
     But how come this exploded now?
   </aside>
 </section>
 
 <!-- SLIDE 8 -->
-<section data-background-image="img/voice-performance.png" data-transition="slide" data-background-transition="slide">
+<section data-background-image="img/voice-performance.png" data-transition="fade-out">
   <p>&nbsp;</p>
   <aside class="notes">
     Well, speech recognition got very GOOD these days -- in terms of numbers (and I'll explain these in a bit)
-    Google managed to improve their own speech recognizer's error rate from a 23% to 4.9% in a handful of years and
+    Google managed to improve their own speech recognizer's error rate from 23% to 4.9% in a handful of years and
     Baidu has currently knocked that out of the park with a 3.7% error rate achieved by its Deep Speech 2 system.
   </aside>
 </section>
 
 <!-- SLIDE 9 -->
-<section data-background-image="img/performance.png" data-transition="slide" data-background-transition="slide">
+<section data-background-image="img/performance.png" data-transition="fade-out">
   <p>&nbsp;</p>
   <aside class="notes">
     If you are wondering what this error rate actually means: it is the sum of all errors the system produces over
@@ -179,7 +179,7 @@
 </section>
 
 <!-- SLIDE 10 -->
-<section data-background-image="img/voice-research.png" data-transition="slide" data-background-transition="slide">
+<section data-background-image="img/voice-research.png" data-transition="fade-out">
   <p>&nbsp;</p>
   <aside class="notes">
     A group from Stanford used the speech rec tech from Baidu (the 3.7% one from earlier) and tested it
@@ -500,7 +500,7 @@ recognizer.stop();
     </div>
   </div>
   <aside class="notes">
-    Just imagine, how cool would it be to have live transcription of your talk using speech recognition, on the web
+    Just imagine, how cool would it be to have a live transcription of your talk using speech recognition, on the web
     how crazy is that? Thank you
   </aside>
 </section>
